@@ -1,15 +1,19 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div>{{ count }}</div>
+  <div>{{ doubleCount }}</div>
+  <div @click="counterStore.increment">increment</div>
+  <div @click="counterStore.$patch({ count: 7 })">Path</div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useCounterStore } from '@/stores/counter'
+const counterStore = useCounterStore()
+const { count, doubleCount } = storeToRefs(counterStore)
+counterStore.$subscribe((mutation, state) => {
+  console.log(mutation)
+  console.log(state)
+})
+</script>
+
+<style></style>
