@@ -1,16 +1,28 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Layout from '../layout/index.vue'
 import type { AppRouteRecordRaw } from '@/router/types'
 import type { App } from 'vue'
+import { $t } from '@/locales'
 
 const base: Array<AppRouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
+    name: 'Home',
+    component: Layout,
+    redirect: '/welcome',
     meta: {
-      title: 'Home'
-    }
+      title: $t('app.title')
+    },
+    children: [
+      {
+        path: '/welcome',
+        name: 'Welcome',
+        component: () => import('@/views/welcome/index.vue'),
+        meta: {
+          title: $t('app.title')
+        }
+      }
+    ]
   }
 ]
 
@@ -21,10 +33,21 @@ const add: Array<AppRouteRecordRaw> = [
     // route level code-splitting
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('../views/AboutView.vue'),
+    component: Layout,
+    redirect: '/about/child',
     meta: {
-      title: 'About'
-    }
+      title: $t('routes.about')
+    },
+    children: [
+      {
+        path: '/about/child',
+        name: 'AboutChildren',
+        component: () => import('../views/aboutView/index.vue'),
+        meta: {
+          title: $t('routes.about.aboutChild')
+        }
+      }
+    ]
   }
 ]
 
