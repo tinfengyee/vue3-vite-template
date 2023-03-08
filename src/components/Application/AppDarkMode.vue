@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <el-button @click="toggleDark">UseDark</el-button>
-  </div>
+  <el-button @click="toggleDark()">UseDark</el-button>
 </template>
 
 <script setup lang="ts">

@@ -1,12 +1,13 @@
 <template>
   <el-container>
     <AppLocalePicker />
+    <AppDarkMode />
   </el-container>
 </template>
 
 <script setup lang="ts">
-// import { useI18n } from 'vue-i18n'
 import AppLocalePicker from '@/components/Application/AppLocalePicker.vue'
+import AppDarkMode from '@/components/Application/appDarkMode.vue'
 </script>
 
 <style>
