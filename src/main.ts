@@ -2,16 +2,17 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { setupRouter } from '@/router'
 import { setupStore } from '@/stores'
-import { setI18n } from '@/locales'
+import { setupI18n } from '@/locales'
 
-import './assets/main.css'
+import ElementPlus from 'element-plus'
 
 async function bootstrap() {
   const app = createApp(App)
 
+  app.use(ElementPlus)
   setupRouter(app)
   setupStore(app)
-  setI18n(app)
+  setupI18n(app)
 
   app.mount('#app')
 }

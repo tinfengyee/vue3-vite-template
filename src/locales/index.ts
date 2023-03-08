@@ -1,6 +1,10 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
 import { Lang } from './type'
+import { useAppStoreHook } from '@/stores/modules/app'
+// element-plus国际化
+import enLocale from 'element-plus/lib/locale/lang/en'
+import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 
 export const loadLang = (lang?: Lang) => {
   const langModules = import.meta.glob('./lang/**/*.ts', { eager: true })
@@ -12,25 +16,22 @@ export const loadLang = (lang?: Lang) => {
   )
   return lang ? langDefaults[lang] : langDefaults
 }
-console.log(loadLang())
 
 export const localesConfigs = {
-  [Lang.ZH_CN]: loadLang(Lang.ZH_CN),
-  [Lang.EN]: loadLang(Lang.EN)
+  [Lang.ZH_CN]: { ...loadLang(Lang.ZH_CN), el: { ...zhLocale } },
+  [Lang.EN]: { ...loadLang(Lang.EN), el: { ...enLocale } }
 }
 
 export const i18n = createI18n({
   legacy: false, // you must set `false`, to use Composition API
-  locale: Lang.ZH_CN,
+  locale: useAppStoreHook().getLocale,
   fallbackLocale: Lang.EN,
   messages: localesConfigs
 })
-console.log(localesConfigs)
-
 // config router
-export function setI18n(app: App<Element>) {
+export function setupI18n(app: App<Element>) {
   app.use(i18n)
 }
 
-/** 此函数只是配合i18n Ally插件来进行国际化智能提示，并无实际意义（只对提示起作用），一般用于路由标题显示 */
+/** 此函数只是配合i18n Ally插件来进行国际化智能提示，并无实际意义（只对提示起作用），如果不需要国际化可删除 */
 export const $t = (key: string) => key

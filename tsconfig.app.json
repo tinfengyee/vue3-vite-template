@@ -19,6 +19,9 @@
       "#/*": [
         "./types/*"
       ],
-    }
+    },
+    "types": [
+      "element-plus/global"
+    ]
   }
 }
