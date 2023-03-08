@@ -1,12 +1,12 @@
 import type { App } from 'vue'
 import { createI18n } from 'vue-i18n'
-import { Lang } from './type'
+import type { LocaleType } from '#/config'
 import { useAppStoreHook } from '@/stores/modules/app'
 // element-plus国际化
 import enLocale from 'element-plus/lib/locale/lang/en'
 import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 
-export const loadLang = (lang?: Lang) => {
+export const loadLang = (lang?: LocaleType) => {
   const langModules = import.meta.glob('./lang/**/*.ts', { eager: true })
   const langDefaults = Object.fromEntries(
     Object.entries(langModules).map(([key, value]: [string, any]) => {
@@ -16,16 +16,15 @@ export const loadLang = (lang?: Lang) => {
   )
   return lang ? langDefaults[lang] : langDefaults
 }
-
-export const localesConfigs = {
-  [Lang.ZH_CN]: { ...loadLang(Lang.ZH_CN), el: { ...zhLocale } },
-  [Lang.EN]: { ...loadLang(Lang.EN), el: { ...enLocale } }
+export const localesConfigs: Record<LocaleType, any> = {
+  'zh-cn': { ...loadLang('zh-cn'), el: { ...zhLocale } },
+  en: { ...loadLang('en'), el: { ...enLocale } }
 }
 
 export const i18n = createI18n({
   legacy: false, // you must set `false`, to use Composition API
   locale: useAppStoreHook().getLocale,
-  fallbackLocale: Lang.EN,
+  fallbackLocale: 'zh-cn',
   messages: localesConfigs
 })
 // config router

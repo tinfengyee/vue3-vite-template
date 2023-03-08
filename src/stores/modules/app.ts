@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { store } from '@/stores'
 import Cache from '@/utils/cache'
-import { Lang } from '@/locales/type'
+import type { LocaleType } from '#/config'
 import { i18n } from '@/locales'
 
 export const useAppStore = defineStore({
@@ -10,12 +10,12 @@ export const useAppStore = defineStore({
     locale: Cache.getLocale()
   }),
   getters: {
-    getLocale(): Lang {
-      return this.locale ?? Lang.ZH_CN
+    getLocale(): LocaleType {
+      return this.locale ?? 'zh-cn'
     }
   },
   actions: {
-    setLocale(locale: Lang) {
+    setLocale(locale: LocaleType) {
       this.locale = locale
       i18n.global.locale.value = locale
       Cache.setLocale(locale)
