@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <nav>
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/about">About</RouterLink>
-    </nav>
-    <main>
-      <RouterView />
-    </main>
-  </div>
+  <el-container class="layout-container">
+    <div></div>
+    <div>
+      <nav>nav</nav>
+      <main>
+        <RouterView />
+      </main>
+    </div>
+  </el-container>
 </template>
 
 <script setup lang="ts">
