@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click" @command="onChangeLocale">
-    <span><I18nIcon /></span>
+    <span><I18nIcon style="width: 20px; height: 20px" /></span>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="zh-cn">简体中文</el-dropdown-item>

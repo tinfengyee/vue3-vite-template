@@ -7,6 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import svgLoader from 'vite-svg-loader'
+import { svgLoader as CustomSvgLoader } from './build/plugins/SVGLoader'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -31,7 +32,9 @@ export default defineConfig({
       svgoConfig: {
         multipass: true
       }
-    })
+    }),
+    // 自定义 svg 插件
+    CustomSvgLoader('./src/assets/svg/')
   ],
   resolve: {
     alias: [

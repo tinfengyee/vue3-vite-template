@@ -6,11 +6,10 @@
 </template>
 
 <script setup lang="ts">
-import AppLocalePicker from '@/components/Application/AppLocalePicker.vue'
-import AppDarkMode from '@/components/Application/appDarkMode.vue'
+import { AppDarkMode, AppLocalePicker } from '@/components/Application'
 </script>
 
-<style>
+<style scoped>
 .main {
   /* color: var(--main-color); */
   background: var(--theme-color);
