@@ -1,0 +1,60 @@
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.app-wrapper {
+  $sidebar-width: 210px;
+  $header-height: 62px;
+
+  @include clearfix;
+
+  position: relative;
+  height: 100%;
+  width: 100%;
+  // display: flex;
+  // use flex layout，or used fixed
+
+  .app-sidebar {
+    height: 100%;
+    width: $sidebar-width;
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1001;
+    display: none; // Temporarily hide
+  }
+
+  .app-container {
+    height: 100vh;
+
+    .app-header {
+      height: $header-height;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 1001;
+      width: calc(100% - 0px);
+      // width: calc(100% - #{$sidebar-width});
+    }
+
+    .app-main {
+      height: 100vh;
+      padding-top: $header-height;
+    }
+  }
+}
+
+.app-mask {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+}

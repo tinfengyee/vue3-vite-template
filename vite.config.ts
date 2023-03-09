@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+import { resolve } from 'node:path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -7,7 +8,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import svgLoader from 'vite-svg-loader'
-import { svgLoader as CustomSvgLoader } from './build/plugins/SVGLoader'
+// import { svgLoader as CustomSvgLoader } from './build/plugins/SVGLoader'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -33,8 +35,12 @@ export default defineConfig({
         multipass: true
       }
     }),
+    createSvgIconsPlugin({
+      iconDirs: [resolve(__dirname, 'src/assets/svg')],
+      symbolId: 'icon-[dir]-[name]'
+    })
     // 自定义 svg 插件
-    CustomSvgLoader('./src/assets/svg/')
+    // CustomSvgLoader('./src/assets/svg/')
   ],
   resolve: {
     alias: [
