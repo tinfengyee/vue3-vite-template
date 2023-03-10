@@ -1,4 +1,4 @@
-import Axios, { type AxiosResponse } from 'axios'
+import Axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, CustomParamsSerializer } from 'axios'
 import type {
   CustomHttpError,
@@ -147,13 +147,13 @@ class CustomHttp {
     )
   }
 
-  /** 通用请求工具函数 */
+  /** 通用请求工具函数 T: response;  D: request */
   public request<T = any, D = any>(
     method: RequestMethods,
     url: string,
-    param?: AxiosRequestConfig,
+    param?: AxiosRequestConfig<D>,
     axiosConfig?: CustomHttpRequestConfig
-  ): Promise<AxiosResponse<T, D>> {
+  ): Promise<T> {
     const config = {
       method,
       url,
@@ -165,29 +165,29 @@ class CustomHttp {
     return new Promise((resolve, reject) => {
       CustomHttp.axiosInstance
         .request(config)
-        .then((response) => resolve(response))
+        .then((response) => resolve(response as T))
         .catch((error) => {
           reject(error)
         })
     })
   }
 
-  /** 单独抽离的post工具函数 */
-  public post<T, P>(
+  /** 单独抽离的post工具函数 T: response;  D: request */
+  public post<T, D>(
     url: string,
-    params?: AxiosRequestConfig<T>,
+    params?: AxiosRequestConfig<D>,
     config?: CustomHttpRequestConfig
-  ): Promise<AxiosResponse> {
-    return this.request<P>('post', url, params, config)
+  ): Promise<T> {
+    return this.request<T>('post', url, params, config)
   }
 
   /** 单独抽离的get工具函数 */
-  public get<T, P>(
+  public get<T, D>(
     url: string,
-    params?: AxiosRequestConfig<T>,
+    params?: AxiosRequestConfig<D>,
     config?: CustomHttpRequestConfig
-  ): Promise<AxiosResponse> {
-    return this.request<P>('get', url, params, config)
+  ): Promise<T> {
+    return this.request<T>('get', url, params, config)
   }
 }
 

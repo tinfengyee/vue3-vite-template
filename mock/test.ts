@@ -5,7 +5,9 @@ export default [
   {
     url: '/api/get',
     method: 'get',
-    response: ({ query }) => {
+    response: ({ query, body }) => {
+      console.log(query, body)
+
       return {
         code: 0,
         data: {

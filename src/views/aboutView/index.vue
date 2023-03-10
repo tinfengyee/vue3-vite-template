@@ -16,7 +16,9 @@ import { AppDarkMode, AppLocalePicker } from '@/components/Application'
 import { getDemo } from '@/api/custom'
 
 const testApi = () => {
-  getDemo().then((res) => {
+  getDemo('44', {
+    id: 2
+  }).then((res) => {
     console.log(res)
   })
 }
