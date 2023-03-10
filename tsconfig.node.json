@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "include": [
+    "env.d.ts",
     "build/**/*.ts",
     "vite.config.*",
     "vitest.config.*",

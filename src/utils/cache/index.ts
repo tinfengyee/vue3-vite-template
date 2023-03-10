@@ -1,9 +1,11 @@
-import { Storage } from '@/utils/storage'
+import { Storage, SessionStorage } from '@/utils/storage'
 import * as CacheKey from '@/enums/cacheEnum'
 import type { UserInfo } from '#/store'
 import type { LocaleType } from '#/config'
 class Cache {
-  getToken = () => Storage.getItem<string>(CacheKey.TOKEN_KEY)
+  getToken = () => SessionStorage.getItem<string>(CacheKey.TOKEN_KEY)
+
+  setToken = (token: string) => SessionStorage.setItem(CacheKey.TOKEN_KEY, token)
 
   getUserInfo = () => Storage.getItem<UserInfo>(CacheKey.USER_INFO_KEY)
 

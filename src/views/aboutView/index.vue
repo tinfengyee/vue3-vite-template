@@ -1,12 +1,25 @@
 <template>
   <el-container>
-    <AppLocalePicker />
-    <AppDarkMode />
+    <div>
+      <AppLocalePicker />
+      <AppDarkMode />
+    </div>
+    <div>
+      <h3>API</h3>
+      <el-button @click="testApi">getDemo</el-button>
+    </div>
   </el-container>
 </template>
 
 <script setup lang="ts">
 import { AppDarkMode, AppLocalePicker } from '@/components/Application'
+import { getDemo } from '@/api/custom'
+
+const testApi = () => {
+  getDemo().then((res) => {
+    console.log(res)
+  })
+}
 </script>
 
 <style scoped>
