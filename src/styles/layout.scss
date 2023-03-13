@@ -33,12 +33,19 @@
     height: 100vh;
 
     .app-header {
-      height: $header-height;
+      height: calc(0 + var(--navbar-height));
       position: fixed;
       top: 0;
       right: 0;
       z-index: 1001;
       width: calc(100% - 0px);
+      &::after {
+        content: '';
+        display: block;
+        background: #f1f2f3;
+        height: 1px;
+        width: 100%;
+      }
       // width: calc(100% - #{$sidebar-width});
     }
 

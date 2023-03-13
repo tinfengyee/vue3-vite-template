@@ -45,7 +45,9 @@ const svgStyle = computed(() => {
 
 <style scoped lang="scss">
 .svg-icon {
-  display: inline-block;
+  // display: inline-block;
+  display: flex;
+  align-items: center;
   // vertical-align: middle;
   svg {
     width: 1em;

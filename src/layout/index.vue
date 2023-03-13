@@ -21,8 +21,4 @@ import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
 </script>
-<style>
-.box {
-  height: 689px;
-}
-</style>
+<style></style>
