@@ -9,6 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import svgLoader from 'vite-svg-loader'
 // import { svgLoader as CustomSvgLoader } from './build/plugins/SVGLoader'
+
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -33,19 +34,44 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       vue(),
       vueJsx(),
       AutoImport({
-        resolvers: [
-          ElementPlusResolver({
-            importStyle: 'sass'
-          })
-        ]
+        resolvers: [ElementPlusResolver()],
+        imports: ['vue', 'vue-router'],
+        dts: 'src/auto-imports.d.ts'
       }),
       Components({
-        resolvers: [
-          ElementPlusResolver({
-            importStyle: 'sass'
-          })
-        ]
+        // 生产环境按需导入
+        resolvers:
+          command === 'build'
+            ? ElementPlusResolver({
+                importStyle: 'sass'
+              })
+            : undefined,
+
+        // allow auto load markdown components under `./src/components/`
+        extensions: ['vue'],
+        // allow auto import and register components used in markdown
+        include: [/\.vue$/, /\.vue\?vue/],
+        dts: 'src/components.d.ts'
       }),
+      // 开发环境完整引入element-plus
+      {
+        name: 'dev-auto-import-element-plus',
+        transform(code, id) {
+          if (command !== 'build' && /src\/main.ts$/.test(id)) {
+            // console.log(code)
+            const name = 'ElementPlus'
+
+            // 引入 ElementPlus 和 样式
+            const prepend = `import ${name} from 'element-plus';\nimport 'element-plus/dist/index.css';\n`
+
+            // 通过匹配字符串来使用 ElementPlus （此处替换规则根据 main.ts 的情况而定）
+            // 相当于将字符串 `app.use(router).mount('#app')` 替换成 `app.use(router).use(ElementPlus).mount('#app')`
+            code = code.replace('.mount(', ($1) => `.use(${name})` + $1)
+
+            return prepend + code
+          }
+        }
+      },
       svgLoader({
         svgoConfig: {
           multipass: true
