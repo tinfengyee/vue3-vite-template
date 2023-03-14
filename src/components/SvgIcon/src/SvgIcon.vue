@@ -1,11 +1,14 @@
 <template>
-  <div class="svg-icon">
-    <svg :class="className" :style="svgStyle" v-bind="$attrs" aria-hidden="true">
-      <use :xlink:href="iconName" />
-    </svg>
-  </div>
+  <svg class="svg-icon" :style="svgStyle" aria-hidden="true">
+    <use :xlink:href="iconName" />
+  </svg>
 </template>
-
+<!-- <script lang="ts">
+// 如果使用 v-bind="$attrs"，需要设置 xinheritAttrs: false
+export default defineComponent({
+  inheritAttrs: false
+})
+</script> -->
 <script setup lang="ts">
 import { computed } from 'vue'
 
@@ -23,12 +26,13 @@ const props = defineProps({
     default: ''
   },
   width: {
-    type: String,
-    default: ''
+    type: Number
   },
   height: {
-    type: String,
-    default: ''
+    type: Number
+  },
+  size: {
+    type: Number
   }
 })
 
@@ -36,26 +40,21 @@ const props = defineProps({
 const iconName = computed(() => `#icon-${props.icon.replace('icon-', '')}`)
 const svgStyle = computed(() => {
   let style = ''
-  if (props.width) style += `width: ${props.width};`
-  if (props.height) style += `height: ${props.height};`
   if (props.color) style += `color: ${props.color};`
+  if (props.size) return (style += `width: ${props.size}px;height: ${props.size}px;`)
+  if (props.width) style += `width: ${props.width}px;`
+  if (props.height) style += `height: ${props.height}px;`
   return style
 })
 </script>
 
 <style scoped lang="scss">
 .svg-icon {
-  // display: inline-block;
-  display: flex;
-  align-items: center;
-  // vertical-align: middle;
-  svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 </style>

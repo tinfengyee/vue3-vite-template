@@ -7,6 +7,7 @@
     <div>
       <h3>API</h3>
       <el-button @click="testApi">getDemo</el-button>
+      <div class="box"></div>
     </div>
   </el-container>
 </template>
@@ -28,5 +29,8 @@ const testApi = () => {
 .main {
   /* color: var(--main-color); */
   background: var(--theme-color);
+}
+.box {
+  height: 1000px;
 }
 </style>

@@ -7,9 +7,6 @@
 }
 
 .app-wrapper {
-  $sidebar-width: 210px;
-  $header-height: 62px;
-
   @include clearfix;
 
   position: relative;
@@ -20,25 +17,26 @@
 
   .app-sidebar {
     height: 100%;
-    width: $sidebar-width;
+    width: var(--sidebar-width);
     flex-shrink: 0;
     position: fixed;
     left: 0;
     top: 0;
     z-index: 1001;
-    display: none; // Temporarily hide
+    background-color: rgba($color: #000000, $alpha: 0.3);
   }
 
   .app-container {
     height: 100vh;
+    margin-left: var(--sidebar-width);
 
     .app-header {
-      height: calc(0 + var(--navbar-height));
+      height: var(--header-height);
       position: fixed;
       top: 0;
       right: 0;
       z-index: 1001;
-      width: calc(100% - 0px);
+      width: calc(100% - var(--sidebar-width));
       &::after {
         content: '';
         display: block;
@@ -46,22 +44,12 @@
         height: 1px;
         width: 100%;
       }
-      // width: calc(100% - #{$sidebar-width});
+      // width: calc(100% - #{var(--sidebar-width)});
     }
 
     .app-main {
       height: 100vh;
-      padding-top: $header-height;
+      padding-top: var(--header-height);
     }
   }
-}
-
-.app-mask {
-  background: #000;
-  opacity: 0.3;
-  width: 100%;
-  top: 0;
-  height: 100%;
-  position: absolute;
-  z-index: 999;
 }

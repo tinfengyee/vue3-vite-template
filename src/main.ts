@@ -8,6 +8,7 @@ import 'virtual:svg-icons-register'
 import '@/assets/iconfont/iconfont.js'
 import './styles/reset.scss'
 import './styles/index.scss'
+
 const app = createApp(App)
 
 async function bootstrap() {

@@ -1,6 +1,5 @@
 <template>
-  <!-- <el-button @click="toggleDark()">UseDark</el-button> -->
-  <div class="icon dark-mode" @click="toggleDark()">
+  <div @click="toggleDark()">
     <SvgIcon icon="icon-themelightdark" />
   </div>
 </template>

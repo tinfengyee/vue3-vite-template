@@ -1,10 +1,23 @@
 :root {
   --sidebar-width: 210px;
-  --navbar-height: 50px;
-  --header-height: 62px;
+  --hide-sidebar-width: 54px;
+  --header-height: 52px;
 
   --main-bg-color: #f0f2f5;
   --navbar-bg-color: #ffffff;
   --navbar-text-color: #444444;
-  --navbar-hover-color: rgba(0, 0, 0, 0.1);
+  --navbar-hover-color: rgba(0, 0, 0, 0.05);
 }
+
+// .hover-container {
+//   padding: 0 16px;
+//   line-height: 46px;
+//   height: 100%;
+//   cursor: pointer;
+//   transition: background 0.3s;
+//   -webkit-tap-highlight-color: transparent;
+
+//   &:hover {
+//     background: rgba(0, 0, 0, 0.025);
+//   }
+// }

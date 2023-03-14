@@ -1,15 +1,16 @@
 <template>
   <div class="app-navbar">
     <div class="navbar-left">
+      <Hamburger />
       <RouterLink to="/" class="logo">
-        <SvgIcon icon="logo-jhipster" width="50px" height="50px" />
+        <SvgIcon icon="logo-jhipster" :size="50" />
         <span>LOGO</span>
       </RouterLink>
     </div>
     <div class="navbar-right">
-      <LocalPicker />
-      <DarkMode />
-      <RouterLink to="/about">
+      <LocalPicker class="right-menu-item locale-picker" />
+      <DarkMode class="right-menu-item" />
+      <RouterLink to="/about" class="right-menu-item">
         <SvgIcon icon="icon-logo-google" />
       </RouterLink>
       <User />
@@ -18,6 +19,7 @@
 </template>
 <script setup lang="ts">
 import SvgIcon from '@/components/SvgIcon'
+import Hamburger from './components/Hamburger.vue'
 import LocalPicker from '@/components/Application/src/AppLocalePicker.vue'
 import DarkMode from '@/components/Application/src/AppDarkMode.vue'
 import User from './components/User.vue'
@@ -26,7 +28,7 @@ import User from './components/User.vue'
 <style scoped lang="scss">
 .app-navbar {
   display: flex;
-  height: var(--navbar-height);
+  height: var(--header-height);
 }
 .navbar-left {
   flex: 1;
@@ -34,7 +36,7 @@ import User from './components/User.vue'
   align-items: center;
   .logo {
     // padding: 10px;
-    height: var(--navbar-height);
+    height: var(--header-height);
     display: flex;
     align-items: center;
     padding: 8px;
@@ -54,16 +56,30 @@ import User from './components/User.vue'
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  height: var(--navbar-height);
-  :deep(.svg-icon) {
-    font-size: 16px;
-    height: var(--navbar-height);
-    line-height: var(--navbar-height);
+  height: var(--header-height);
+  line-height: var(--header-height);
+  .right-menu-item {
+    height: 100%;
+    font-size: 20px;
+    padding: 0 10px;
     cursor: pointer;
-    padding: 0 12px;
     &:hover {
-      background-color: var(--navbar-hover-color);
+      background: var(--navbar-hover-color);
     }
   }
+  .locale-picker {
+    height: 100%;
+    line-height: var(--header-height);
+  }
+  // :deep(.svg-icon) {
+  //   font-size: 16px;
+  //   height: var(--header-height);
+  //   line-height: var(--header-height);
+  //   cursor: pointer;
+  //   padding: 0 12px;
+  //   &:hover {
+  //     background-color: var(--navbar-hover-color);
+  //   }
+  // }
 }
 </style>
