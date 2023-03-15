@@ -23,7 +23,6 @@ import Hamburger from './components/Hamburger.vue'
 import LocalPicker from '@/components/Application/src/AppLocalePicker.vue'
 import DarkMode from '@/components/Application/src/AppDarkMode.vue'
 import User from './components/User.vue'
-// import moduleName from '@/assets/svg/i18n.svg?component'
 </script>
 <style scoped lang="scss">
 .app-navbar {
@@ -71,15 +70,5 @@ import User from './components/User.vue'
     height: 100%;
     line-height: var(--header-height);
   }
-  // :deep(.svg-icon) {
-  //   font-size: 16px;
-  //   height: var(--header-height);
-  //   line-height: var(--header-height);
-  //   cursor: pointer;
-  //   padding: 0 12px;
-  //   &:hover {
-  //     background-color: var(--navbar-hover-color);
-  //   }
-  // }
 }
 </style>

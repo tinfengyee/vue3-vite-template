@@ -16,6 +16,7 @@
   // use flex layout，or used fixed
 
   .app-sidebar {
+    transition: width 0.28s;
     height: 100%;
     width: var(--sidebar-width);
     flex-shrink: 0;
@@ -24,13 +25,16 @@
     top: 0;
     z-index: 1001;
     background-color: rgba($color: #000000, $alpha: 0.3);
+    overflow: hidden;
   }
 
   .app-container {
     height: 100vh;
     margin-left: var(--sidebar-width);
+    transition: margin-left 0.28s;
 
     .app-header {
+      transition: width 0.28s;
       height: var(--header-height);
       position: fixed;
       top: 0;
@@ -50,6 +54,18 @@
     .app-main {
       height: 100vh;
       padding-top: var(--header-height);
+    }
+  }
+}
+
+.hideSidebar {
+  .app-sidebar {
+    width: var(--hide-sidebar-width);
+  }
+  .app-container {
+    margin-left: var(--hide-sidebar-width);
+    .app-header {
+      width: calc(100% - var(--hide-sidebar-width));
     }
   }
 }

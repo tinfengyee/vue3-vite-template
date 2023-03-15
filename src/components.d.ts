@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Hamburger: typeof import('./layout/components/Navbar/components/Hamburger.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Src: typeof import('./components/TransitionWrap/src/index.vue')['default']
     SvgIcon: typeof import('./components/SvgIcon/src/SvgIcon.vue')['default']
   }
 }
