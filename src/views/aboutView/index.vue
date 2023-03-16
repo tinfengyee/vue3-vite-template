@@ -6,22 +6,29 @@
     </div>
     <div>
       <h3>API</h3>
-      <el-button @click="testApi">getDemo</el-button>
+      <el-button @click="doLogin">getDemo</el-button>
       <div class="box"></div>
+      <div role="button">fff</div>
     </div>
   </el-container>
 </template>
 
 <script setup lang="ts">
 import { AppDarkMode, AppLocalePicker } from '@/components/Application'
-import { getDemo } from '@/api/custom'
+import { loginApi } from '@/api/sys/user'
+import type { LoginParams } from '@/api/sys/model/userModel'
 
-const testApi = () => {
-  getDemo('44', {
-    id: 2
-  }).then((res) => {
-    console.log(res)
-  })
+import { reactive } from 'vue'
+
+const params = reactive<LoginParams>({
+  username: 'admin',
+  password: 'admin',
+  rememberMe: false
+})
+
+const doLogin = async () => {
+  const res = await loginApi(params)
+  console.log(res)
 }
 </script>
 

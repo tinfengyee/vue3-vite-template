@@ -1,13 +1,57 @@
+/* 使用 sass 变量 */
+$sidebar-width: 210px;
+
+/* 使用原生 css 变量 */
+// 布局变量建议放在 容器 div 里面， 不要放在 :root， 我晚点再改。。
 :root {
-  --sidebar-width: 210px;
+  // 侧边菜单栏宽度
+  --sidebar-width: #{$sidebar-width};
   --hide-sidebar-width: 0px;
+
   --header-height: 52px;
 
   --main-bg-color: #f0f2f5;
   --navbar-bg-color: #ffffff;
   --navbar-text-color: #444444;
   --navbar-hover-color: rgba(0, 0, 0, 0.05);
+  // 统一过渡时间效果
+  --transition: 0.3s all;
 }
+
+/* 上下左右边距 */
+@for $index from 1 through 5 {
+  .mgl_#{$index}0 {
+    margin-left: 10px * $index;
+  }
+  .mgr_#{$index}0 {
+    margin-right: 10px * $index;
+  }
+  .mgt_#{$index}0 {
+    margin-top: 10px * $index;
+  }
+  .mgb_#{$index}0 {
+    margin-bottom: 10px * $index;
+  }
+  .pdl_#{$index}0 {
+    padding-left: 10px * $index;
+  }
+  .pdr_#{$index}0 {
+    padding-right: 10px * $index;
+  }
+  .pdt_#{$index}0 {
+    padding-top: 10px * $index;
+  }
+  .pdb_#{$index}0 {
+    padding-bottom: 10px * $index;
+  }
+}
+
+/* 暗黑模式可以使用媒体查询 */
+// @media (prefers-color-scheme: dark | light) {
+//   :root {
+//     --variable: #{$dark_var | $light_var}
+//   }
+// }
 
 // .hover-container {
 //   padding: 0 16px;

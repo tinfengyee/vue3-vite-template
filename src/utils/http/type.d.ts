@@ -3,8 +3,7 @@ import {
   AxiosError,
   AxiosResponse,
   AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-  AxiosRequestHeaders
+  InternalAxiosRequestConfig
 } from 'axios'
 
 export type resultType = {

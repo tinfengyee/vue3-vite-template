@@ -1,5 +1,5 @@
 <template>
-  <main class="box">
+  <div class="app-main">
     <RouterView />
-  </main>
+  </div>
 </template>

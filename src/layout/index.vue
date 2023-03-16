@@ -8,9 +8,7 @@
         <!-- tabs -->
       </div>
       <el-scrollbar>
-        <div class="app-main">
-          <AppMain />
-        </div>
+        <AppMain />
       </el-scrollbar>
     </div>
   </div>

@@ -22,20 +22,29 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
     base: CONFIG.VITE_APP_BASE_URL,
     server: {
+      cors: true,
       proxy: {
         '/api': {
-          target: 'http://127.0.0.1:5173',
-          changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
+          target: 'http://localhost:8080',
+          changeOrigin: true
+          // secure: false
+          // rewrite: (path) => path.replace(/^\/api/, '')
         }
       }
+      // proxy: {
+      //   '/api': {
+      //     target: 'http://127.0.0.1:5173',
+      //     changeOrigin: true,
+      //     rewrite: (path) => path.replace(/^\/api/, '')
+      //   }
+      // }
     },
     plugins: [
       vue(),
       vueJsx(),
       AutoImport({
         resolvers: [ElementPlusResolver()],
-        imports: ['vue', 'vue-router'],
+        // imports: ['vue', 'vue-router'],
         dts: 'src/auto-imports.d.ts'
       }),
       Components({
