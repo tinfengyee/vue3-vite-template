@@ -3,6 +3,7 @@ import Layout from '../layout/index.vue'
 import type { AppRouteRecordRaw } from '@/router/types'
 import type { App } from 'vue'
 import { $t } from '@/locales'
+import { useUserStoreHook } from '@/stores/modules/user'
 
 const base: Array<AppRouteRecordRaw> = [
   {
@@ -23,6 +24,14 @@ const base: Array<AppRouteRecordRaw> = [
         }
       }
     ]
+  },
+  {
+    path: '/404',
+    name: '404',
+    meta: {
+      title: '404'
+    },
+    component: () => import('@/views/404.vue')
   }
 ]
 
@@ -51,9 +60,42 @@ const add: Array<AppRouteRecordRaw> = [
   }
 ]
 
+export const errorRoute: RouteRecordRaw = {
+  path: '/:pathMatch(.*)',
+  redirect: '/404'
+}
+
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [...base, ...add] as unknown as RouteRecordRaw[]
+})
+
+// 必须加上 /welcome 不然无限循环
+const whiteList = ['/', '/welcome']
+
+router.beforeEach(async (to, from, next) => {
+  const userStore = useUserStoreHook()
+  console.log(from, to)
+  // token存在的情况
+  if (userStore.getToken) {
+    if (!userStore.getUserInfo) {
+      // 用户信息不存在，则重新拉取用户等信息
+      await userStore.getUserInfoAcion()
+      // 这里可以处理路由表 router.addRoute(..)
+      router.addRoute(errorRoute)
+
+      // 错误路由
+      next({ ...to, replace: true })
+    } else {
+      next()
+    }
+  } else {
+    if (whiteList.indexOf(to.path) > -1) {
+      next()
+    } else {
+      next()
+    }
+  }
 })
 
 // config router

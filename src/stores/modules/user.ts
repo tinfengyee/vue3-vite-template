@@ -23,8 +23,8 @@ export const useUserStore = defineStore({
     lastUpdateTime: 0
   }),
   getters: {
-    getUserInfo(): UserInfo {
-      return this.userInfo || Cache.getUserInfo()
+    getUserInfo(): Nullable<UserInfo> {
+      return this.userInfo
     },
     getToken(): string {
       return this.token || Cache.getToken()
@@ -62,7 +62,7 @@ export const useUserStore = defineStore({
     logout() {
       this.setToken('')
       this.setUserInfo(null)
-      router.push('/')
+      router.replace('/')
     }
   }
 })
