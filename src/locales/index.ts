@@ -8,9 +8,11 @@ import zhLocale from 'element-plus/lib/locale/lang/zh-cn'
 
 export const loadLang = (lang?: LocaleType) => {
   const langModules = import.meta.glob('./lang/**/*.ts', { eager: true })
+
   const langDefaults = Object.fromEntries(
     Object.entries(langModules).map(([key, value]: [string, any]) => {
       const matched = key.match(/\/([\w\d-_]+)\.[tj]s/i)![1]
+
       return [matched, value.default]
     })
   )

@@ -79,36 +79,42 @@ class CustomHttp {
           ? config
           : new Promise((resolve) => {
               resolve(config) //这行后面删除
-              // const data = getToken()
-              // if (data) {
-              //   // 根据时间判断是否过期
-              //   const now = new Date().getTime()
-              //   const expired = parseInt(data.expires) - now <= 0
-              //   if (expired) {
-              //     // token 失效
-              //     if (!CustomHttp.isRefreshing) {
-              //       CustomHttp.isRefreshing = true
-              //       // token过期刷新 接口调用
-              //       handRefreshToken({ refreshToken: data.refreshToken })
-              //         .then((res) => {
-              //           const token = res.data.accessToken
-              //           config.headers['Authorization'] = formatToken(token)
-              //           CustomHttp.requests.forEach((cb) => cb(token))
-              //           CustomHttp.requests = []
-              //         })
-              //         .finally(() => {
-              //           CustomHttp.isRefreshing = false
-              //         })
-              //     }
-              //     resolve(CustomHttp.retryOriginalRequest(config))
-              //   } else {
-              //     // token 没有失效
-              //     config.headers['Authorization'] = formatToken(data.accessToken)
-              //     resolve(config)
-              //   }
-              // } else {
-              //   resolve(config)
-              // }
+              const data = getToken()
+              if (data) {
+                // 测试
+                config.headers['Authorization'] = formatToken(data)
+                resolve(config)
+                // 测试
+                // -----------start 保留
+                // // 根据时间判断是否过期
+                // const now = new Date().getTime()
+                // const expired = parseInt(data.expires) - now <= 0
+                // if (expired) {
+                //   // token 失效
+                //   if (!CustomHttp.isRefreshing) {
+                //     CustomHttp.isRefreshing = true
+                //     // token过期刷新 接口调用
+                //     handRefreshToken({ refreshToken: data.refreshToken })
+                //       .then((res) => {
+                //         const token = res.data.accessToken
+                //         config.headers['Authorization'] = formatToken(token)
+                //         CustomHttp.requests.forEach((cb) => cb(token))
+                //         CustomHttp.requests = []
+                //       })
+                //       .finally(() => {
+                //         CustomHttp.isRefreshing = false
+                //       })
+                //   }
+                //   resolve(CustomHttp.retryOriginalRequest(config))
+                // } else {
+                //   // token 没有失效
+                //   config.headers['Authorization'] = formatToken(data.accessToken)
+                //   resolve(config)
+                // }
+                // ----------end 保留
+              } else {
+                resolve(config)
+              }
             })
       },
       (error) => {

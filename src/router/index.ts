@@ -11,7 +11,7 @@ const base: Array<AppRouteRecordRaw> = [
     component: Layout,
     redirect: '/welcome',
     meta: {
-      title: $t('app.title')
+      title: $t('routes.home.welcome')
     },
     children: [
       {
@@ -19,7 +19,7 @@ const base: Array<AppRouteRecordRaw> = [
         name: 'Welcome',
         component: () => import('@/views/welcome/index.vue'),
         meta: {
-          title: $t('app.title')
+          title: $t('routes.home.welcome')
         }
       }
     ]
@@ -34,17 +34,17 @@ const add: Array<AppRouteRecordRaw> = [
     // this generates a separate chunk (About.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: Layout,
-    redirect: '/about/child',
+    redirect: '/about/index',
     meta: {
-      title: $t('routes.about')
+      title: $t('routes.about.about')
     },
     children: [
       {
-        path: '/about/child',
+        path: '/about/index',
         name: 'AboutChildren',
         component: () => import('../views/aboutView/index.vue'),
         meta: {
-          title: $t('routes.about.aboutChild')
+          title: $t('routes.about.about')
         }
       }
     ]

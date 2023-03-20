@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     AppDarkMode: typeof import('./components/Application/src/AppDarkMode.vue')['default']
     AppLocalePicker: typeof import('./components/Application/src/AppLocalePicker.vue')['default']
     Hamburger: typeof import('./layout/components/Navbar/components/Hamburger.vue')['default']
+    LoginForm: typeof import('./components/LoginForm/src/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Src: typeof import('./components/TransitionWrap/src/index.vue')['default']

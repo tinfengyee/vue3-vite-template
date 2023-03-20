@@ -1,23 +1,47 @@
 <template>
   <el-dropdown class="avatar-container" trigger="hover">
     <div class="avatar-wrapper">
-      <el-avatar shape="circle" :size="30" src="/src/assets/44761321.jpg" />
-      <span>Admin</span>
+      <template v-if="userinfo">
+        <el-avatar shape="circle" :size="30" :src="userinfo.imageUrl" />
+        <span>{{ userinfo.firstName }}</span>
+      </template>
+      <template v-else>
+        <el-avatar shape="circle" :size="30" src="" />
+      </template>
       <SvgIcon icon="icon-down" />
     </div>
     <template #dropdown>
       <el-dropdown-menu class="user-dropdown">
-        <router-link to="/profile/password">
-          <el-dropdown-item>修改密码</el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided> 退出 </el-dropdown-item>
+        <template v-if="!userinfo">
+          <el-dropdown-item @click="showLoginForm = true">{{
+            t('components.user.login')
+          }}</el-dropdown-item>
+          <el-dropdown-item divided> {{ t('components.user.register') }} </el-dropdown-item>
+        </template>
+        <template v-else>
+          <el-dropdown-item @click="userStore.logout">
+            {{ t('components.user.logout') }}
+          </el-dropdown-item>
+        </template>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+  <LoginForm v-model="showLoginForm" />
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
 import SvgIcon from '@/components/SvgIcon'
+import LoginForm from '@/components/LoginForm'
+import { useUserStore } from '@/stores/modules/user'
+import { useI18n } from '@/hooks/web/useI18n'
+
+const { t } = useI18n()
+const userStore = useUserStore()
+
+const userinfo = computed(() => userStore.getUserInfo)
+
+const showLoginForm = ref(false)
 </script>
 
 <style scoped lang="scss">

@@ -9,6 +9,8 @@ class Cache {
 
   getUserInfo = () => Storage.getItem<UserInfo>(CacheKey.USER_INFO_KEY)
 
+  setUserInfo = (userInfo: UserInfo | null) => Storage.setItem(CacheKey.USER_INFO_KEY, userInfo)
+
   getLocale = () => Storage.getItem<LocaleType>(CacheKey.LANGUAGE_KEY)
 
   setLocale = (value: LocaleType) => Storage.setItem(CacheKey.LANGUAGE_KEY, value)
