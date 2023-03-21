@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="value" :title="t('components.login.title')" append-to-body>
+  <base-dialog v-model="value" :title="t('components.login.title')">
     <el-form :model="form" label-position="top">
       <el-form-item :label="t('components.login.username')">
         <el-input v-model="form.username" autocomplete="off" />
@@ -22,7 +22,7 @@
         <el-button type="primary" @click="doLogin"> {{ t('components.login.okText') }} </el-button>
       </span>
     </template>
-  </el-dialog>
+  </base-dialog>
 </template>
 
 <script setup lang="ts">
@@ -30,6 +30,7 @@ import { computed, reactive } from 'vue'
 import type { LoginParams } from '@/api/sys/model/userModel'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/web/useI18n'
+import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
 const userStore = useUserStore()
@@ -65,8 +66,11 @@ const doLogin = async () => {
     if (userInfo) {
       emit('update:modelValue', false)
     }
-  } catch (error) {
-    console.log(error)
+  } catch (error: any) {
+    ElMessage({
+      type: 'warning',
+      message: error.response.data.detail
+    })
   }
 }
 </script>

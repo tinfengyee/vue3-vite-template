@@ -7,7 +7,7 @@
         <Navbar />
         <!-- tabs -->
       </div>
-      <el-scrollbar>
+      <el-scrollbar class="app-scrollbar">
         <AppMain />
       </el-scrollbar>
     </div>

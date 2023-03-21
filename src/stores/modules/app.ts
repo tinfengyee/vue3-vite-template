@@ -16,7 +16,7 @@ export const useAppStore = defineStore({
   state: (): appStoreType => ({
     locale: Cache.getLocale(),
     sidebar: {
-      opened: true
+      opened: false
     }
   }),
   getters: {
