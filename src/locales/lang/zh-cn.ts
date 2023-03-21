@@ -38,6 +38,8 @@ export default {
     user: {
       login: '登录',
       register: '注册',
+      settings: '设置',
+      pwdChange: '修改密码',
       logout: '退出'
     }
   }

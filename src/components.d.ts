@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppDarkMode: typeof import('./components/Application/src/AppDarkMode.vue')['default']
     AppLocalePicker: typeof import('./components/Application/src/AppLocalePicker.vue')['default']
+    BaseDialog: typeof import('./components/base-dialog/src/base-dialog.vue')['default']
     Hamburger: typeof import('./layout/components/Navbar/components/Hamburger.vue')['default']
     LoginForm: typeof import('./components/LoginForm/src/LoginForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -11,3 +11,14 @@
   position: absolute;
   z-index: 9999;
 }
+
+// 渐变
+.fade-enter-active,
+.fade-leave-active {
+  transition: var(--transition);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -5,7 +5,7 @@
       <AppDarkMode />
     </div>
     <div>
-      <h3>API</h3>
+      <h3 ref="h">API</h3>
       <el-button @click="doLogin">getDemo</el-button>
       <div class="box"></div>
       <div role="button">fff</div>
@@ -18,7 +18,7 @@ import { AppDarkMode, AppLocalePicker } from '@/components/Application'
 import { loginApi } from '@/api/sys/user'
 import type { LoginParams } from '@/api/sys/model/userModel'
 
-import { reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 
 const params = reactive<LoginParams>({
   username: 'admin',

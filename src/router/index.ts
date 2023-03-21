@@ -75,7 +75,6 @@ const whiteList = ['/', '/welcome']
 
 router.beforeEach(async (to, from, next) => {
   const userStore = useUserStoreHook()
-  console.log(from, to)
   // token存在的情况
   if (userStore.getToken) {
     if (!userStore.getUserInfo) {

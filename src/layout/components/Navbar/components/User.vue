@@ -19,6 +19,12 @@
           <el-dropdown-item divided> {{ t('components.user.register') }} </el-dropdown-item>
         </template>
         <template v-else>
+          <el-dropdown-item @click="$router.push('/about')">
+            {{ t('components.user.settings') }}
+          </el-dropdown-item>
+          <el-dropdown-item @click="$router.push('/about')">
+            {{ t('components.user.pwdChange') }}
+          </el-dropdown-item>
           <el-dropdown-item @click="userStore.logout">
             {{ t('components.user.logout') }}
           </el-dropdown-item>
@@ -35,6 +41,7 @@ import SvgIcon from '@/components/SvgIcon'
 import LoginForm from '@/components/LoginForm'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/web/useI18n'
+import type { router } from '@/router'
 
 const { t } = useI18n()
 const userStore = useUserStore()

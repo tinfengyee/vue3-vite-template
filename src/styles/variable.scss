@@ -2,7 +2,7 @@
 $sidebar-width: 210px;
 
 /* 使用原生 css 变量 */
-// 布局变量建议放在 容器 div 里面， 不要放在 :root， 我晚点再改。。
+// 布局变量建议放在 容器 div 里面， 可以不放在 :root
 :root {
   // 侧边菜单栏宽度
   --sidebar-width: #{$sidebar-width};
@@ -14,6 +14,9 @@ $sidebar-width: 210px;
   --navbar-bg-color: #ffffff;
   --navbar-text-color: #444444;
   --navbar-hover-color: rgba(0, 0, 0, 0.05);
+
+  // 矩阵节点统一使用圆角变量
+  --border-radius: 2px;
   // 统一过渡时间效果
   --transition: 0.3s all;
 }

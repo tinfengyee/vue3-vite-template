@@ -38,6 +38,8 @@ export default {
     user: {
       login: 'Login',
       register: 'Register',
+      settings: 'Settings',
+      pwdChange: 'Change Pwd',
       logout: 'Logout'
     }
   }

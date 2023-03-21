@@ -5,7 +5,7 @@
         <el-input v-model="form.username" autocomplete="off" />
       </el-form-item>
       <el-form-item :label="t('components.login.password')">
-        <el-input v-model="form.password" autocomplete="off" />
+        <el-input v-model="form.password" autocomplete="off" @keyup.enter="doLogin" />
       </el-form-item>
       <el-form-item>
         <div>
@@ -44,12 +44,6 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void
 }>()
 
-const form = reactive<LoginParams>({
-  username: 'admin',
-  password: 'admin',
-  rememberMe: true
-})
-
 const value = computed({
   get() {
     return props.modelValue
@@ -57,6 +51,12 @@ const value = computed({
   set(value) {
     emit('update:modelValue', value)
   }
+})
+
+const form = reactive<LoginParams>({
+  username: 'admin',
+  password: 'admin',
+  rememberMe: true
 })
 
 const doLogin = async () => {
