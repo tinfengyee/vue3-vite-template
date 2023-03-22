@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click" @command="onChangeLocale">
-    <span><SvgIcon icon="icon-translate" /></span>
+    <SvgIcon icon="icon-translate" size="20" />
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="zh-cn">简体中文</el-dropdown-item>

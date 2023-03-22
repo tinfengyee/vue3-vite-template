@@ -3,7 +3,7 @@
     <div class="navbar-left">
       <Hamburger />
       <RouterLink to="/" class="logo">
-        <SvgIcon icon="logo-jhipster" :size="50" />
+        <SvgIcon icon="logo-jhipster" :size="50" color="red" />
         <span>LOGO</span>
       </RouterLink>
       <RouterLink to="/about" class="right-menu-item">
@@ -13,7 +13,7 @@
     <div class="navbar-right">
       <LocalPicker class="right-menu-item locale-picker" />
       <DarkMode class="right-menu-item" />
-      <Management class="right-menu-item" />
+      <Management class="right-menu-item management" />
       <User />
     </div>
   </div>
@@ -60,16 +60,25 @@ import Management from './components/Management.vue'
   height: var(--header-height);
   line-height: var(--header-height);
   .right-menu-item {
-    // display: flex;
-    // align-items: center;
     height: 100%;
-    // vertical-align: center;
+    // display: inline-flex;
+    // align-items: stretch;
     line-height: var(--header-height);
-    // font-size: 20px;
-    padding: 0 10px;
     cursor: pointer;
     &:hover {
       background: var(--navbar-hover-color);
+    }
+    &.management {
+      padding: 0 8px;
+    }
+    :deep(.svg-icon) {
+      box-sizing: content-box;
+      padding: 0 10px;
+      height: var(--header-height);
+      line-height: var(--header-height);
+      &.manage-icon {
+        padding: 0;
+      }
     }
   }
 }

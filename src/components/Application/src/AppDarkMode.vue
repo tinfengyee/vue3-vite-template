@@ -1,6 +1,6 @@
 <template>
   <div @click="toggleDark()">
-    <SvgIcon icon="icon-themelightdark" />
+    <SvgIcon icon="icon-themelightdark" size="20" />
   </div>
 </template>
 

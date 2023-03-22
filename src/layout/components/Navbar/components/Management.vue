@@ -1,6 +1,9 @@
 <template>
   <el-dropdown trigger="click" @command="onDropChange">
-    <span>管理<SvgIcon icon="icon-down" /></span>
+    <div class="flex fvertical">
+      <span>管理</span>
+      <SvgIcon icon="icon-down" class="manage-icon" />
+    </div>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="UserManagement">用户管理</el-dropdown-item>
