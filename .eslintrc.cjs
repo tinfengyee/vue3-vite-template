@@ -10,6 +10,7 @@ module.exports = defineConfig({
     'eslint:recommended', // eslint 规则 [https://cn.eslint.org/docs/rules/]
     '@vue/eslint-config-typescript', // typescript-eslint 规则 [https://typescript-eslint.io/rules/]
     '@vue/eslint-config-prettier/skip-formatting' // 解决 eslint - prettier 冲突
+    // './.eslintrc-auto-import.json' // 可以加入这个配合 AutoImport 自动按需导入
   ],
   parserOptions: {
     ecmaVersion: 'latest'

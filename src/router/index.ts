@@ -37,6 +37,56 @@ const base: Array<AppRouteRecordRaw> = [
 
 const add: Array<AppRouteRecordRaw> = [
   {
+    path: '/account',
+    name: 'account',
+    // route level code-splitting
+    // this generates a separate chunk (About.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: Layout,
+    meta: {
+      title: $t('routes.account.account')
+    },
+    children: [
+      {
+        path: '/account/settings',
+        name: 'Settings',
+        component: () => import('../views/account/settings/index.vue'),
+        meta: {
+          title: $t('routes.account.settings')
+        }
+      },
+      {
+        path: '/account/password',
+        name: 'Password',
+        component: () => import('../views/account/password/index.vue'),
+        meta: {
+          title: $t('routes.account.password')
+        }
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    // route level code-splitting
+    // this generates a separate chunk (About.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: Layout,
+    meta: {
+      title: 'admin'
+    },
+    children: [
+      {
+        path: '/admin/user-management',
+        name: 'UserManagement',
+        component: () => import('../views/admin/user-management/index.vue'),
+        meta: {
+          title: 'UserManagement'
+        }
+      }
+    ]
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
@@ -77,7 +127,7 @@ router.beforeEach(async (to, from, next) => {
   const userStore = useUserStoreHook()
   // token存在的情况
   if (userStore.getToken) {
-    if (!userStore.getUserInfo) {
+    if (!userStore.userInfo) {
       // 用户信息不存在，则重新拉取用户等信息
       await userStore.getUserInfoAcion()
       // 这里可以处理路由表 router.addRoute(..)

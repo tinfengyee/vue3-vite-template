@@ -19,10 +19,10 @@
           <el-dropdown-item divided> {{ t('components.user.register') }} </el-dropdown-item>
         </template>
         <template v-else>
-          <el-dropdown-item @click="$router.push('/about')">
+          <el-dropdown-item @click="$router.push('/account/settings')">
             {{ t('components.user.settings') }}
           </el-dropdown-item>
-          <el-dropdown-item @click="$router.push('/about')">
+          <el-dropdown-item @click="$router.push('/account/password')">
             {{ t('components.user.pwdChange') }}
           </el-dropdown-item>
           <el-dropdown-item @click="userStore.logout">
@@ -38,10 +38,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import SvgIcon from '@/components/SvgIcon'
-import LoginForm from '@/components/LoginForm'
+import LoginForm from '@/views/account/login/index.vue'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/web/useI18n'
-import type { router } from '@/router'
 
 const { t } = useI18n()
 const userStore = useUserStore()

@@ -1,9 +1,16 @@
+import type { UserInfo } from '#/store'
 import { http } from '@/utils/http'
-import type { LoginParams, LoginResultModel, AccountResultModel } from './model/userModel'
+import type {
+  LoginParams,
+  LoginResultModel,
+  AccountResultModel,
+  passwordParams
+} from './model/userModel'
 
 enum Api {
   Login = '/authenticate',
-  Account = '/account'
+  Account = '/account',
+  Password = '/account/change-password'
 }
 
 export const loginApi = (data: LoginParams) => {
@@ -14,4 +21,15 @@ export const loginApi = (data: LoginParams) => {
 
 export const accountApi = () => {
   return http.request<AccountResultModel>('get', Api.Account)
+}
+
+export const updateAccount = (data: UserInfo) => {
+  return http.request<any>('post', Api.Account, {
+    data
+  })
+}
+export const changePassword = (data: passwordParams) => {
+  return http.request<any, passwordParams>('post', Api.Password, {
+    data
+  })
 }

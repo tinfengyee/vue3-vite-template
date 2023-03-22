@@ -23,3 +23,9 @@ export interface AccountResultModel {
   lastName: string
   login: string
 }
+
+export interface passwordParams {
+  currentPassword: string
+  newPassword: string
+  confirmPassword?: string
+}

@@ -5,9 +5,15 @@ export default {
     },
     about: {
       about: '关于'
+    },
+    account: {
+      account: '账户',
+      password: '密码',
+      settings: '设置'
     }
   },
   common: {
+    success: '操作成功 !',
     okText: '确认',
     closeText: '关闭',
     cancelText: '取消',
@@ -41,6 +47,27 @@ export default {
       settings: '设置',
       pwdChange: '修改密码',
       logout: '退出'
+    }
+  },
+  views: {
+    password: {
+      title: '修改密码',
+      currentPassword: '当前密码',
+      newPassword: '新密码',
+      confirmPassword: '新密码确认',
+      confirmBtn: '保存',
+      placeholder: {
+        currentPassword: '请输入当前密码',
+        newPassword: '请输入新密码',
+        confirmPassword: '请再次输入密码'
+      }
+    },
+    settings: {
+      title: '用户设置',
+      firstName: '名字',
+      lastName: '姓氏',
+      email: '电子邮件',
+      confirmBtn: '保存'
     }
   }
 }

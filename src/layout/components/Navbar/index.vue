@@ -6,13 +6,14 @@
         <SvgIcon icon="logo-jhipster" :size="50" />
         <span>LOGO</span>
       </RouterLink>
+      <RouterLink to="/about" class="right-menu-item">
+        <SvgIcon icon="icon-logo-google" />
+      </RouterLink>
     </div>
     <div class="navbar-right">
       <LocalPicker class="right-menu-item locale-picker" />
       <DarkMode class="right-menu-item" />
-      <RouterLink to="/about" class="right-menu-item">
-        <SvgIcon icon="icon-logo-google" />
-      </RouterLink>
+      <Management class="right-menu-item" />
       <User />
     </div>
   </div>
@@ -23,6 +24,7 @@ import Hamburger from './components/Hamburger.vue'
 import LocalPicker from '@/components/Application/src/AppLocalePicker.vue'
 import DarkMode from '@/components/Application/src/AppDarkMode.vue'
 import User from './components/User.vue'
+import Management from './components/Management.vue'
 </script>
 <style scoped lang="scss">
 .app-navbar {
@@ -58,17 +60,17 @@ import User from './components/User.vue'
   height: var(--header-height);
   line-height: var(--header-height);
   .right-menu-item {
+    // display: flex;
+    // align-items: center;
     height: 100%;
-    font-size: 20px;
+    // vertical-align: center;
+    line-height: var(--header-height);
+    // font-size: 20px;
     padding: 0 10px;
     cursor: pointer;
     &:hover {
       background: var(--navbar-hover-color);
     }
-  }
-  .locale-picker {
-    height: 100%;
-    line-height: var(--header-height);
   }
 }
 </style>

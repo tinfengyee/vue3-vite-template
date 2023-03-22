@@ -5,9 +5,15 @@ export default {
     },
     about: {
       about: 'about'
+    },
+    account: {
+      account: 'Account',
+      password: 'Password',
+      settings: 'Settings'
     }
   },
   common: {
+    success: 'Success !',
     okText: 'OK',
     closeText: 'Close',
     cancelText: 'Cancel',
@@ -41,6 +47,20 @@ export default {
       settings: 'Settings',
       pwdChange: 'Change Pwd',
       logout: 'Logout'
+    }
+  },
+  views: {
+    password: {
+      title: 'Password',
+      currentPassword: 'CurrentPassword',
+      newPassword: 'NewPassword',
+      confirmPassword: 'ConfirmPassword',
+      confirmBtn: 'ConfirmBtn',
+      placeholder: {
+        currentPassword: 'CurrentPassword',
+        newPassword: 'NewPassword',
+        confirmPassword: 'ConfirmPassword'
+      }
     }
   }
 }

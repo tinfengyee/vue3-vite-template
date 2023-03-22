@@ -23,8 +23,8 @@ export const useUserStore = defineStore({
     lastUpdateTime: 0
   }),
   getters: {
-    getUserInfo(): Nullable<UserInfo> {
-      return this.userInfo
+    getUserInfo(): UserInfo {
+      return this.userInfo || Cache.getUserInfo()
     },
     getToken(): string {
       return this.token || Cache.getToken()

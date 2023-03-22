@@ -1,43 +1,36 @@
 <template>
-  <el-container>
-    <div>
-      <AppLocalePicker />
-      <AppDarkMode />
+  <div class="hello">
+    <div>姓名：{{ person.name }}</div>
+    <div>年龄：{{ person.age }}</div>
+    <div>朋友：{{ person.friend.name }}-{{ person.friend.age }}</div>
+    <div v-for="(item, index) in person.hobbies" :key="index">
+      爱好列表
+      <div>{{ item }}</div>
     </div>
-    <div>
-      <h3 ref="h">API</h3>
-      <el-button @click="doLogin">getDemo</el-button>
-      <div class="box"></div>
-      <div role="button">fff</div>
-    </div>
-  </el-container>
+    {{ reactivePerson.friend.name }}
+    <button @click="updateInfo">修改信息</button>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { AppDarkMode, AppLocalePicker } from '@/components/Application'
-import { loginApi } from '@/api/sys/user'
-import type { LoginParams } from '@/api/sys/model/userModel'
+import { reactive, toRaw } from 'vue'
+let person = {
+  name: '艾薇儿',
+  age: 18,
+  friend: {
+    name: '安妮·海瑟薇',
+    age: '28'
+  },
+  hobbies: ['music', 'dance', 'movie']
+}
+const reactivePerson = reactive(person)
+console.log('person', person)
+console.log('reactivePerson', reactivePerson)
+console.log(toRaw(reactivePerson) === person)
 
-import { onMounted, reactive, ref } from 'vue'
-
-const params = reactive<LoginParams>({
-  username: 'admin',
-  password: 'admin',
-  rememberMe: false
-})
-
-const doLogin = async () => {
-  const res = await loginApi(params)
-  console.log(res)
+const updateInfo = () => {
+  person.friend.name = '疯驴子'
+  console.log('person', person)
+  console.log('reactivePerson', reactivePerson)
 }
 </script>
-
-<style scoped>
-.main {
-  /* color: var(--main-color); */
-  background: var(--theme-color);
-}
-.box {
-  height: 1000px;
-}
-</style>

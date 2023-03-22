@@ -5,7 +5,7 @@
         <el-input v-model="form.username" autocomplete="off" />
       </el-form-item>
       <el-form-item :label="t('components.login.password')">
-        <el-input v-model="form.password" autocomplete="off" @keyup.enter="doLogin" />
+        <el-input v-model="form.password" autocomplete="off" show-password @keyup.enter="doLogin" />
       </el-form-item>
       <el-form-item>
         <div>

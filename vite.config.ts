@@ -7,6 +7,8 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import svgLoader from 'vite-svg-loader'
 // import { svgLoader as CustomSvgLoader } from './build/plugins/SVGLoader'
 
@@ -18,6 +20,7 @@ const CONFIG = loadEnv(ENV, process.cwd())
 
 // https://vitejs.dev/config/
 // export default defineConfig()
+
 export default ({ command }: ConfigEnv): UserConfigExport => {
   return {
     base: CONFIG.VITE_APP_BASE_URL,
@@ -43,18 +46,29 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
       vue(),
       vueJsx(),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
         // imports: ['vue', 'vue-router'],
+        resolvers: [
+          ElementPlusResolver(),
+          IconsResolver({
+            prefix: 'Icon'
+          })
+        ],
         dts: 'src/auto-imports.d.ts'
+        // eslintrc: {
+        //   enabled: true, // Default `false`
+        //   filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+        //   globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        // }
       }),
       Components({
         // 生产环境按需导入
-        resolvers:
-          command === 'build'
-            ? ElementPlusResolver({
-                importStyle: 'sass'
-              })
-            : undefined,
+        // resolvers: command === 'build' ? ElementPlusResolver() : undefined,
+        resolvers: [
+          IconsResolver({
+            enabledCollections: ['ep']
+          })
+          // ElementPlusResolver()
+        ],
 
         // allow auto load markdown components under `./src/components/`
         extensions: ['vue'],
@@ -62,9 +76,13 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
         include: [/\.vue$/, /\.vue\?vue/],
         dts: 'src/components.d.ts'
       }),
+      Icons({
+        autoInstall: true
+      }),
       // 开发环境完整引入element-plus
       {
         name: 'dev-auto-import-element-plus',
+        apply: 'serve',
         transform(code, id) {
           if (command !== 'build' && /src\/main.ts$/.test(id)) {
             // console.log(code)

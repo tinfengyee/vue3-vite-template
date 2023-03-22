@@ -1,6 +1,6 @@
-@use 'variable.scss';
-@use 'common.scss';
-@use 'layout.scss';
+@use './variables.scss';
+@use './common.scss';
+@use './layout.scss';
 
 .app-mask {
   background: #000;
@@ -10,6 +10,12 @@
   height: 100%;
   position: absolute;
   z-index: 9999;
+}
+
+.card {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: var(--border-radius);
 }
 
 // 渐变
