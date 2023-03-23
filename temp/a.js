@@ -1,2 +1,2 @@
-let a = JSON.parse(null)
-console.log(a)
+let reg = /\/api|management\/.*/
+console.log(reg.test('/management3/hellono'))

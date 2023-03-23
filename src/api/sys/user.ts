@@ -8,9 +8,9 @@ import type {
 } from './model/userModel'
 
 enum Api {
-  Login = '/authenticate',
-  Account = '/account',
-  Password = '/account/change-password'
+  Login = '/api/authenticate',
+  Account = '/api/account',
+  Password = '/api/account/change-password'
 }
 
 export const loginApi = (data: LoginParams) => {

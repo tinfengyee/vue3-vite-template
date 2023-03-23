@@ -7,6 +7,7 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="UserManagement">用户管理</el-dropdown-item>
+        <el-dropdown-item command="Health">服务状态</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -21,4 +22,5 @@ const onDropChange = function (command: string) {
     name: command
   })
 }
+console.log(router.getRoutes())
 </script>

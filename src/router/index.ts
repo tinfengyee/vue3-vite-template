@@ -77,11 +77,19 @@ const add: Array<AppRouteRecordRaw> = [
     },
     children: [
       {
-        path: '/admin/user-management',
+        path: '/admin/user',
         name: 'UserManagement',
-        component: () => import('../views/admin/user-management/index.vue'),
+        component: () => import('@/views/admin/user/index.vue'),
         meta: {
           title: 'UserManagement'
+        }
+      },
+      {
+        path: '/admin/health',
+        name: 'Health',
+        component: () => import('@/views/admin/health/index.vue'),
+        meta: {
+          title: 'Health'
         }
       }
     ]
@@ -101,7 +109,7 @@ const add: Array<AppRouteRecordRaw> = [
       {
         path: '/about/index',
         name: 'AboutChildren',
-        component: () => import('../views/aboutView/index.vue'),
+        component: () => import('@/views/aboutView/index.vue'),
         meta: {
           title: $t('routes.about.about')
         }

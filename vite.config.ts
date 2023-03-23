@@ -27,7 +27,7 @@ export default ({ command }: ConfigEnv): UserConfigExport => {
     server: {
       cors: true,
       proxy: {
-        '/api': {
+        '^/api|management/.*': {
           target: 'http://localhost:8080',
           changeOrigin: true
           // secure: false

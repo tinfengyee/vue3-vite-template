@@ -80,3 +80,39 @@
     }
   }
 }
+
+.c-search-box {
+  padding: 24px;
+  padding-bottom: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.c-form-box {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.c-table-box {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.c-btn-list {
+  margin-bottom: 12px;
+  display: flex;
+  .el-button + .el-button {
+    margin-left: 12px;
+  }
+}
+
+.c-pagination {
+  display: flex;
+  justify-content: flex-end;
+  .el-pagination {
+    padding: 20px 0 0 0;
+  }
+}
