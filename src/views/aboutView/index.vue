@@ -1,5 +1,6 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="background-color: #fff">
+    <Progress height="25px" value="66" :animation="true"></Progress>
     <div>姓名：{{ person.name }}</div>
     <div>年龄：{{ person.age }}</div>
     <div>朋友：{{ person.friend.name }}-{{ person.friend.age }}</div>
@@ -14,6 +15,7 @@
 
 <script setup lang="ts">
 import { reactive, toRaw } from 'vue'
+import Progress from '@/components/Progress'
 let person = {
   name: '艾薇儿',
   age: 18,
