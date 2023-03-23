@@ -18,18 +18,10 @@ export const useUserStore = defineStore({
   id: 'userStore',
   state: (): UserState => ({
     userInfo: null,
-    token: undefined,
+    token: Cache.getToken(),
     sessionTimeout: false,
     lastUpdateTime: 0
   }),
-  getters: {
-    getUserInfo(): UserInfo {
-      return this.userInfo || Cache.getUserInfo()
-    },
-    getToken(): string {
-      return this.token || Cache.getToken()
-    }
-  },
   actions: {
     setToken(token: string) {
       this.token = token
@@ -37,12 +29,13 @@ export const useUserStore = defineStore({
     },
     setUserInfo(info: UserInfo | null) {
       this.userInfo = info
-      Cache.setUserInfo(info)
+      // Cache.setUserInfo(info)
     },
     resetState() {
-      this.userInfo = null
-      this.token = ''
+      this.setToken('')
+      this.setUserInfo(null)
       this.sessionTimeout = false
+      this.lastUpdateTime = 0
     },
     async login(params: LoginParams) {
       try {
@@ -54,7 +47,7 @@ export const useUserStore = defineStore({
       }
     },
     async getUserInfoAcion() {
-      if (!this.getToken) return null
+      if (!this.token) return null
       const account = (await accountApi()) as UserInfo
       this.setUserInfo(account)
       return account
@@ -62,6 +55,11 @@ export const useUserStore = defineStore({
     logout() {
       this.setToken('')
       this.setUserInfo(null)
+      router.replace('/')
+    },
+    // magic
+    logoutTest() {
+      console.log('logoutTest')
       router.replace('/')
     }
   }

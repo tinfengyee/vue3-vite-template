@@ -31,8 +31,8 @@ import { ElMessage } from 'element-plus'
 
 const { t } = useI18n()
 const userStore = useUserStore()
-const user = toRaw(userStore.getUserInfo)
-const userinfo = reactive({ ...user })
+const user = toRaw(userStore.userInfo)
+const userinfo = reactive({ ...user! })
 
 async function handleConfirm() {
   try {

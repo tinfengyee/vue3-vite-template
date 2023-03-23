@@ -7,9 +7,10 @@ import type {
   CustomHttpRequestConfig
 } from './type.d'
 import { stringify } from 'qs'
-import NProgress from './progress'
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 import { getToken, formatToken } from './auth'
+import { useUserStoreHook } from '@/stores/modules/user'
+import { ElMessage } from 'element-plus'
 // import { useUserStoreHook } from '@/store/modules/user'
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
@@ -60,9 +61,7 @@ class CustomHttp {
   private httpInterceptorsRequest(): void {
     CustomHttp.axiosInstance.interceptors.request.use(
       async (config: CustomHttpRequestConfig) => {
-        // 开启进度条动画
-        NProgress.start()
-        console.log(config)
+        // console.log('request-config:::', config)
 
         // 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
         if (typeof config.beforeRequestCallback === 'function') {
@@ -78,40 +77,11 @@ class CustomHttp {
         return whiteList.some((v) => config!.url!.indexOf(v) > -1)
           ? config
           : new Promise((resolve) => {
-              resolve(config) //这行后面删除
               const data = getToken()
               if (data) {
                 // 测试
                 config.headers['Authorization'] = formatToken(data)
                 resolve(config)
-                // 测试
-                // -----------start 保留
-                // // 根据时间判断是否过期
-                // const now = new Date().getTime()
-                // const expired = parseInt(data.expires) - now <= 0
-                // if (expired) {
-                //   // token 失效
-                //   if (!CustomHttp.isRefreshing) {
-                //     CustomHttp.isRefreshing = true
-                //     // token过期刷新 接口调用
-                //     handRefreshToken({ refreshToken: data.refreshToken })
-                //       .then((res) => {
-                //         const token = res.data.accessToken
-                //         config.headers['Authorization'] = formatToken(token)
-                //         CustomHttp.requests.forEach((cb) => cb(token))
-                //         CustomHttp.requests = []
-                //       })
-                //       .finally(() => {
-                //         CustomHttp.isRefreshing = false
-                //       })
-                //   }
-                //   resolve(CustomHttp.retryOriginalRequest(config))
-                // } else {
-                //   // token 没有失效
-                //   config.headers['Authorization'] = formatToken(data.accessToken)
-                //   resolve(config)
-                // }
-                // ----------end 保留
               } else {
                 resolve(config)
               }
@@ -129,8 +99,6 @@ class CustomHttp {
     instance.interceptors.response.use(
       (response: CustomHttpResponse) => {
         const $config = response.config
-        // 关闭进度条动画
-        NProgress.done()
         // 优先判断post/get等方法是否传入回掉，否则执行初始化设置等回掉
         if (typeof $config.beforeResponseCallback === 'function') {
           $config.beforeResponseCallback(response)
@@ -140,13 +108,33 @@ class CustomHttp {
           CustomHttp.initConfig.beforeResponseCallback(response)
           return response.data
         }
+        // console.log('response:::', response)
+
         return response.data
       },
       (error: CustomHttpError) => {
         const $error = error
+        const status = error.status || error.response!.status
+        const url = error.response?.config.url
+        if (status === 401 || status === 403) {
+          if (status === 401) {
+            // console.log('logout-401:::')
+            if (!url?.endsWith('api/account') && !url?.endsWith('api/authenticate')) {
+              // console.log('logout-in-401:::')
+              ElMessage.error('登录过期')
+              useUserStoreHook().logout()
+              return
+            }
+          }
+          console.log(url)
+          console.log('Unauthorized!')
+          return Promise.reject($error)
+        }
+        if (status >= 500) {
+          console.log('Server error!')
+        }
+
         $error.isCancelRequest = Axios.isCancel($error)
-        // 关闭进度条动画
-        NProgress.done()
         // 所有的响应异常 区分来源为取消请求/非取消请求
         return Promise.reject($error)
       }

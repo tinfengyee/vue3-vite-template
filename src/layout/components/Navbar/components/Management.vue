@@ -22,5 +22,4 @@ const onDropChange = function (command: string) {
     name: command
   })
 }
-console.log(router.getRoutes())
 </script>

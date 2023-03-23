@@ -45,7 +45,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
 const userStore = useUserStore()
 
-const userinfo = computed(() => userStore.getUserInfo)
+const userinfo = computed(() => userStore.userInfo)
 
 const showLoginForm = ref(false)
 </script>

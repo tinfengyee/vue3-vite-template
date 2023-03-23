@@ -46,7 +46,7 @@
   </div>
   <el-dialog
     v-model="userDialogShow"
-    custom-class="user-dialog"
+    class="user-dialog"
     title="用户"
     :show-close="true"
     :close-on-press-escape="false"

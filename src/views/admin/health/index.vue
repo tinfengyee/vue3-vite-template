@@ -27,7 +27,7 @@
   </div>
   <el-dialog
     v-model="dialogShow"
-    custom-class="user-dialog"
+    class="user-dialog"
     title="详情"
     :show-close="true"
     :close-on-press-escape="false"

@@ -4,6 +4,7 @@ import type { AppRouteRecordRaw } from '@/router/types'
 import type { App } from 'vue'
 import { $t } from '@/locales'
 import { useUserStoreHook } from '@/stores/modules/user'
+import NProgress from './progress'
 
 const base: Array<AppRouteRecordRaw> = [
   {
@@ -132,17 +133,24 @@ export const router = createRouter({
 const whiteList = ['/', '/welcome']
 
 router.beforeEach(async (to, from, next) => {
+  // 开启进度条动画
+  NProgress.start()
   const userStore = useUserStoreHook()
   // token存在的情况
-  if (userStore.getToken) {
+  if (userStore.token) {
     if (!userStore.userInfo) {
-      // 用户信息不存在，则重新拉取用户等信息
-      await userStore.getUserInfoAcion()
-      // 这里可以处理路由表 router.addRoute(..)
-      router.addRoute(errorRoute)
+      try {
+        // 用户信息不存在，则重新拉取用户等信息
+        await userStore.getUserInfoAcion()
+        // 这里可以处理路由表 router.addRoute(..)
+        router.addRoute(errorRoute)
 
-      // 错误路由
-      next({ ...to, replace: true })
+        // 错误路由
+        next({ ...to, replace: true })
+      } catch {
+        userStore.resetState()
+        next('/')
+      }
     } else {
       next()
     }
@@ -150,9 +158,15 @@ router.beforeEach(async (to, from, next) => {
     if (whiteList.indexOf(to.path) > -1) {
       next()
     } else {
-      next()
+      // console.log('NO_Token:::')
+      userStore.resetState()
+      next('/')
     }
   }
+})
+router.afterEach(() => {
+  // 关闭进度条动画
+  NProgress.done()
 })
 
 // config router
