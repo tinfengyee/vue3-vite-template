@@ -1,7 +1,10 @@
-type healthProperty = 'db' | 'diskSpace' | 'livenessState' | 'ping' | 'readinessState'
-interface healthInfo {
+// export type HealthProperty = 'db' | 'diskSpace' | 'livenessState' | 'ping' | 'readinessState'
+export interface HealthInfo {
   status: string
   details?: object
 }
+export type HealthRecord = Record<string, HealthInfo>
 
-export type healthRecord = Record<healthProperty, healthInfo>
+export interface HealthComps {
+  components: HealthRecord
+}

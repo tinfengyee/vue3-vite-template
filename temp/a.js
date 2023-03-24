@@ -1,2 +1,5 @@
-let reg = /\/api|management\/.*/
-console.log(reg.test('/management3/hellono'))
+const a = {
+  status: 'st',
+  my: 'd'
+}
+console.log({...a, key: 'd'})

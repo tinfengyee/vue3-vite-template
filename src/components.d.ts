@@ -15,6 +15,7 @@ declare module '@vue/runtime-core' {
     IEpClose: typeof import('~icons/ep/close')['default']
     IEpEditPen: typeof import('~icons/ep/edit-pen')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
+    IEpRefresh: typeof import('~icons/ep/refresh')['default']
     IEpView: typeof import('~icons/ep/view')['default']
     Progress: typeof import('./components/Progress/src/Progress.vue')['default']
     Progress_other: typeof import('./components/Progress/src/Progress_other.vue')['default']
