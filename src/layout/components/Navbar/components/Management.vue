@@ -2,7 +2,7 @@
   <el-dropdown trigger="click" @command="onDropChange">
     <div class="flex fvertical">
       <span>管理</span>
-      <SvgIcon icon="icon-down" class="manage-icon" />
+      <SvgIcon icon="down" class="manage-icon" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '@/components/SvgIcon'
 import { router } from '@/router'
 
 const onDropChange = function (command: string) {

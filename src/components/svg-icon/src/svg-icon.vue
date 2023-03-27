@@ -5,14 +5,14 @@
     </svg>
   </i>
 </template>
-<!-- <script lang="ts">
-// 如果使用 v-bind="$attrs"，需要设置 xinheritAttrs: false
+<script lang="ts">
+// 如果使用 v-bind="$attrs"，需要设置 xinheritAttrs: false,否则会绑定重复 class
 export default defineComponent({
   inheritAttrs: false
 })
-</script> -->
+</script>
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { isUnDef } from '@/utils/is'
 
 const props = defineProps({
@@ -30,7 +30,9 @@ const props = defineProps({
 })
 
 // https://www.iconfont.cn 图标库需使用前缀 icon- 才能匹配
-const iconName = computed(() => `#icon-${props.icon.replace('icon-', '')}`)
+const iconName = computed(() => `#icon-${props.icon.replace(/^icon-/, '')}`)
+console.log(iconName.value)
+
 const style = computed(() => {
   const { size, color } = props
   if (!size && !color) return {}
@@ -39,15 +41,6 @@ const style = computed(() => {
     '--color': color
   }
 })
-// const svgStyle = computed(() => {
-//   let style = ''
-//   if (props.color) style += `--color: ${props.color};`
-//   // if (props.color) style += `color: ${props.color};`
-//   if (props.size) return (style += `width: ${props.size}px;height: ${props.size}px;`)
-//   if (props.width) style += `width: ${props.width}px;`
-//   if (props.height) style += `height: ${props.height}px;`
-//   return style
-// })
 </script>
 
 <style scoped lang="scss">
@@ -61,6 +54,7 @@ const style = computed(() => {
 // }
 .svg-icon {
   --color: inherit;
+  // height: 100%;
   height: 1em;
   width: 1em;
   line-height: 1em;
@@ -71,6 +65,7 @@ const style = computed(() => {
   fill: currentColor;
   color: var(--color);
   font-size: inherit;
+  // vertical-align: -0.15em; // 解决图标会偏上。用行高设置垂直居中，图标偏上，el-plus也会有这个问题，是行高有什么问题，还是啥？。或者设置容器高度为100%解决。
   svg {
     height: 1em;
     width: 1em;

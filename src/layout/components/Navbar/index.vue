@@ -12,17 +12,14 @@
     </div>
     <div class="navbar-right">
       <LocalPicker class="right-menu-item locale-picker" />
-      <DarkMode class="right-menu-item" />
       <Management class="right-menu-item management" />
       <User />
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import SvgIcon from '@/components/SvgIcon'
 import Hamburger from './components/Hamburger.vue'
 import LocalPicker from '@/components/Application/src/AppLocalePicker.vue'
-import DarkMode from '@/components/Application/src/AppDarkMode.vue'
 import User from './components/User.vue'
 import Management from './components/Management.vue'
 </script>

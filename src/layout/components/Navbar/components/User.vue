@@ -8,14 +8,12 @@
       <template v-else>
         <el-avatar shape="circle" :size="30" src="" />
       </template>
-      <SvgIcon icon="icon-down" />
+      <SvgIcon icon="down" />
     </div>
     <template #dropdown>
       <el-dropdown-menu class="user-dropdown">
         <template v-if="!userinfo">
-          <el-dropdown-item @click="showLoginForm = true">{{
-            t('components.user.login')
-          }}</el-dropdown-item>
+          <el-dropdown-item @click="showLoginForm = true">{{ t('components.user.login') }}</el-dropdown-item>
           <el-dropdown-item divided> {{ t('components.user.register') }} </el-dropdown-item>
         </template>
         <template v-else>
@@ -37,7 +35,6 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import SvgIcon from '@/components/SvgIcon'
 import LoginForm from '@/views/account/login/index.vue'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/web/useI18n'

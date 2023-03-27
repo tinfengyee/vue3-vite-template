@@ -1,14 +1,8 @@
 <template>
   <div>
-    <h1>Welcome Page</h1>
-    <el-button type="danger" @click="show = true">关闭嵌套 Dialog</el-button>
-    <base-dialog title="第1个 dialog" v-model="show" :appendToBody="true">
-      <div @click="show1 = true">default</div>
-      <div></div>
-      <template #footer>
-        <el-button type="danger" @click="show = false">关闭嵌套 Dialog</el-button>
-      </template>
-    </base-dialog>
+    <h1>Welcome</h1>
+    <svg-icon size="20" icon="iconicon-test" />
+    <SvgIcon icon="test-left" color="pink" size="20" />
   </div>
 </template>
 

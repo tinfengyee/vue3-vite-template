@@ -1,6 +1,6 @@
 <template>
   <el-dropdown trigger="click" @command="onChangeLocale">
-    <SvgIcon icon="icon-translate" size="20" />
+    <el-icon class="svg-icon" :size="20"><I18nIcon /></el-icon>
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="zh-cn">简体中文</el-dropdown-item>
@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { LocaleType } from '#/config'
-// import I18nIcon from '@/assets/svg/i18n.svg?component'
+import I18nIcon from '@/assets/svg/i18n.svg?component'
 import { useAppStore } from '@/stores/modules/app'
 const appStore = useAppStore()
 const onChangeLocale = function (locale: LocaleType) {

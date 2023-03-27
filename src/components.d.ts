@@ -9,21 +9,20 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppDarkMode: typeof import('./components/Application/src/AppDarkMode.vue')['default']
     AppLocalePicker: typeof import('./components/Application/src/AppLocalePicker.vue')['default']
     BaseDialog: typeof import('./components/base-dialog/src/base-dialog.vue')['default']
+    IEpArrowDown: typeof import('~icons/ep/arrow-down')['default']
+    IEpArrowDownBold: typeof import('~icons/ep/arrow-down-bold')['default']
     IEpClose: typeof import('~icons/ep/close')['default']
     IEpEditPen: typeof import('~icons/ep/edit-pen')['default']
+    IEpExpand: typeof import('~icons/ep/expand')['default']
+    IEpFold: typeof import('~icons/ep/fold')['default']
     IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpRefresh: typeof import('~icons/ep/refresh')['default']
     IEpView: typeof import('~icons/ep/view')['default']
-    Progress: typeof import('./components/Progress/src/Progress.vue')['default']
-    Progress_other: typeof import('./components/Progress/src/Progress_other.vue')['default']
-    Progress_two: typeof import('./components/Progress/src/Progress_two.vue')['default']
-    Progress2: typeof import('./components/Progress/src/Progress2.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Src: typeof import('./components/TransitionWrap/src/index.vue')['default']
-    SvgIcon: typeof import('./components/SvgIcon/src/SvgIcon.vue')['default']
+    SvgIcon: typeof import('./components/svg-icon/src/svg-icon.vue')['default']
   }
 }

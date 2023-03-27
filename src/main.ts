@@ -8,10 +8,11 @@ import 'virtual:svg-icons-register'
 import '@/assets/iconfont/iconfont.js'
 import './styles/index.scss'
 import BaseDialog from '@/components/base-dialog'
+import SvgIcon from '@/components/svg-icon'
 
 const app = createApp(App)
 
-app.use(BaseDialog)
+app.use(BaseDialog).use(SvgIcon)
 
 async function bootstrap() {
   // app.use(ElementPlus)
