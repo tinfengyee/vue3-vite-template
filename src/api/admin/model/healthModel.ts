@@ -1,7 +1,7 @@
 // export type HealthProperty = 'db' | 'diskSpace' | 'livenessState' | 'ping' | 'readinessState'
 export interface HealthInfo {
   status: string
-  details?: object
+  details?: any
 }
 export type HealthRecord = Record<string, HealthInfo>
 

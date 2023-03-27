@@ -86,6 +86,14 @@ const add: Array<AppRouteRecordRaw> = [
         }
       },
       {
+        path: '/admin/metrics',
+        name: 'Metrics',
+        component: () => import('@/views/admin/metrics/index.vue'),
+        meta: {
+          title: 'Metrics'
+        }
+      },
+      {
         path: '/admin/health',
         name: 'Health',
         component: () => import('@/views/admin/health/index.vue'),
