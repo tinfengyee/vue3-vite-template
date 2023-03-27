@@ -3,19 +3,18 @@ import App from './App.vue'
 import { setupRouter } from '@/router'
 import { setupStore } from '@/stores'
 import { setupI18n } from '@/locales'
+import { registerGlobComp } from './components/registerGlobComp'
+
 // import ElementPlus from 'element-plus'
 import 'virtual:svg-icons-register'
 import '@/assets/iconfont/iconfont.js'
 import './styles/index.scss'
-import BaseDialog from '@/components/base-dialog'
-import SvgIcon from '@/components/svg-icon'
 
 const app = createApp(App)
 
-app.use(BaseDialog).use(SvgIcon)
-
 async function bootstrap() {
   // app.use(ElementPlus)
+  registerGlobComp(app)
   setupRouter(app)
   setupStore(app)
   setupI18n(app)

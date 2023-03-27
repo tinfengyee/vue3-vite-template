@@ -1,11 +1,6 @@
 import Axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, CustomParamsSerializer } from 'axios'
-import type {
-  CustomHttpError,
-  RequestMethods,
-  CustomHttpResponse,
-  CustomHttpRequestConfig
-} from './type.d'
+import type { CustomHttpError, RequestMethods, CustomHttpResponse, CustomHttpRequestConfig } from './type.d'
 import { stringify } from 'qs'
 // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
 import { getToken, formatToken } from './auth'
@@ -167,20 +162,12 @@ class CustomHttp {
   }
 
   /** 单独抽离的post工具函数 T: response;  D: request */
-  public post<T, D>(
-    url: string,
-    params?: AxiosRequestConfig<D>,
-    config?: CustomHttpRequestConfig
-  ): Promise<T> {
+  public post<T, D>(url: string, params?: AxiosRequestConfig<D>, config?: CustomHttpRequestConfig): Promise<T> {
     return this.request<T>('post', url, params, config)
   }
 
   /** 单独抽离的get工具函数 */
-  public get<T, D>(
-    url: string,
-    params?: AxiosRequestConfig<D>,
-    config?: CustomHttpRequestConfig
-  ): Promise<T> {
+  public get<T, D>(url: string, params?: AxiosRequestConfig<D>, config?: CustomHttpRequestConfig): Promise<T> {
     return this.request<T>('get', url, params, config)
   }
 }

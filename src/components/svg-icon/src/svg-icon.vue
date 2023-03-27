@@ -8,6 +8,7 @@
 <script lang="ts">
 // 如果使用 v-bind="$attrs"，需要设置 xinheritAttrs: false,否则会绑定重复 class
 export default defineComponent({
+  name: 'SvgIcon',
   inheritAttrs: false
 })
 </script>
@@ -31,7 +32,6 @@ const props = defineProps({
 
 // https://www.iconfont.cn 图标库需使用前缀 icon- 才能匹配
 const iconName = computed(() => `#icon-${props.icon.replace(/^icon-/, '')}`)
-console.log(iconName.value)
 
 const style = computed(() => {
   const { size, color } = props

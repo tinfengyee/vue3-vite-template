@@ -1,5 +1,5 @@
 import { http } from '@/utils/http'
-import type { LoginResultModel } from '../sys/model/userModel'
+import type { AccountResultModel } from '../sys/model/userModel'
 
 enum Api {
   userList = '/api/admin/users'
@@ -11,7 +11,7 @@ enum Api {
 // }
 
 export const fetchUserList = (req?: any) => {
-  return http.request<LoginResultModel[]>('get', Api.userList, {
+  return http.request<AccountResultModel[]>('get', Api.userList, {
     params: req
   })
 }

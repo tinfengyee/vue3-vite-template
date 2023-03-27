@@ -43,6 +43,7 @@ specifiers:
   vitest: ^0.29.2
   vue: ^3.2.47
   vue-i18n: 9.3.0-beta.16
+  vue-request: 2.0.0-rc.4
   vue-router: ^4.1.6
   vue-tsc: ^1.2.0
 
@@ -59,6 +60,7 @@ dependencies:
   qs: 6.11.1
   vue: 3.2.47
   vue-i18n: 9.3.0-beta.16_vue@3.2.47
+  vue-request: 2.0.0-rc.4_vue@3.2.47
   vue-router: 4.1.6_vue@3.2.47
 
 devDependencies:
@@ -5295,6 +5297,19 @@ packages:
       '@intlify/vue-devtools': 9.3.0-beta.16
       '@vue/devtools-api': 6.5.0
       vue: 3.2.47
+    dev: false
+
+  /vue-request/2.0.0-rc.4_vue@3.2.47:
+    resolution: {integrity: sha512-Nv/CpfKlfwW9SVHakEukeSQpuqSwskeJsHK4gfw8KB8NZogWfR8+EU+XupLe+Dapnm+RAP+wZYzhw89v3Zyx2g==}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.2.47
+      vue-demi: 0.13.11_vue@3.2.47
     dev: false
 
   /vue-router/4.1.6_vue@3.2.47:

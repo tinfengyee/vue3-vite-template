@@ -2,20 +2,9 @@
   <section>
     <teleport to="body" :disabled="!appendToBody">
       <transition name="fade">
-        <div
-          ref="el"
-          class="base-dialog fvc"
-          :style="{ zIndex: currentZIndex }"
-          v-show="modelValue"
-          @click="onClose"
-        >
+        <div ref="el" class="base-dialog fvc" :style="{ zIndex: currentZIndex }" v-show="modelValue" @click="onClose">
           <transition name="dialog-move" @after-leave="onAfterLeave" @after-enter="onAfterEnter">
-            <div
-              ref="contentBox"
-              class="base-dialog-content flex"
-              :style="{ width: width }"
-              v-show="contentShow"
-            >
+            <div ref="contentBox" class="base-dialog-content flex" :style="{ width: width }" v-show="contentShow">
               <div class="base-dialog-title fbetween fvertical">
                 <h2>{{ title }}</h2>
                 <i ref="closeBtn" @click="onClose"></i>
@@ -33,11 +22,7 @@
         </div>
       </transition>
     </teleport>
-    <div
-      v-if="appendToBody"
-      :id="flagId"
-      description="用来标记 teleport 开启之后插入的节点用"
-    ></div>
+    <div v-if="appendToBody" :id="flagId" description="用来标记 teleport 开启之后插入的节点用"></div>
   </section>
 </template>
 <script lang="ts">
@@ -45,7 +30,7 @@ import { usezIndex } from '@/hooks/web/useUtils'
 import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 export default defineComponent({
-  name: 'base-dialog'
+  name: 'BaseDialog'
 })
 </script>
 <script setup lang="ts">
@@ -199,8 +184,7 @@ onUnmounted(function () {
 
 .base-dialog-content {
   border-radius: var(--border-radius);
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-    0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   background-color: #fff;
   overflow: hidden;
   flex-direction: column;

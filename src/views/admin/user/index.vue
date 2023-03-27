@@ -2,11 +2,15 @@
   <div class="c-table-box">
     <div class="c-btn-list">
       <el-button type="primary">
+        <el-icon class="el-icon--right"><i-ep-refresh /></el-icon>
+        <span class="mgr_10" @click="initData">刷新</span>
+      </el-button>
+      <el-button type="primary">
         <el-icon class="el-icon--right"><i-ep-plus /></el-icon>
-        <span class="mgr_10">新增用户</span>
+        <span class="mgr_10">新增用户 </span>
       </el-button>
     </div>
-    <el-table :data="tableData" row-key="ID">
+    <el-table :data="tableData" row-key="ID" v-loading="loading">
       <el-table-column label="ID" min-width="50" prop="id" />
       <el-table-column label="登录" min-width="150" prop="login" />
       <el-table-column label="邮箱" min-width="150" prop="email" />
@@ -34,10 +38,10 @@
     </el-table>
     <div class="c-pagination">
       <el-pagination
-        :current-page="page"
-        :page-size="pageSize"
+        :current-page="pageInfo.page"
+        :page-size="pageInfo.pageSize"
         :page-sizes="[10, 30, 50, 100]"
-        :total="total"
+        :total="pageInfo.total"
         layout="total, sizes, prev, pager, next, jumper"
         @current-change="handleCurrentChange"
         @size-change="handleSizeChange"
@@ -64,34 +68,51 @@
   </el-dialog>
 </template>
 <script setup lang="ts">
-import type { LoginResultModel } from '@/api/sys/model/userModel'
+import { useRequest } from 'vue-request'
+import type { AccountResultModel } from '@/api/sys/model/userModel'
 import { fetchUserList } from '@/api/admin/userManage'
-import { ref } from 'vue'
-// ID 	登录 	邮箱 		语言 	角色	创建时间 	最近修改人 	最近修改时间
-const page = ref(1)
-const total = ref(0)
-const pageSize = ref(10)
-const tableData = ref<LoginResultModel[]>([])
+import { onMounted, reactive, ref } from 'vue'
+
+// const tableData = ref<AccountResultModel[]>([])
+
+// 分页
+const pageInfo = reactive({
+  page: 1,
+  total: 0,
+  pageSize: 10
+})
+
+const userDialogShow = ref(false)
+
+const {
+  data: tableData,
+  loading,
+  refresh
+} = useRequest<AccountResultModel[]>(fetchUserList, {
+  onSuccess: (data) => {
+    console.log(data)
+    pageInfo.total = data.length
+  }
+})
 
 // 初始化数据
 const initData = async () => {
-  const res = await fetchUserList()
-  tableData.value = res
-  total.value = res.length
+  refresh()
 }
-initData()
+
+onMounted(() => {
+  initData()
+})
 
 // 分页
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  pageInfo.pageSize = val
   initData()
 }
 const handleCurrentChange = (val: number) => {
-  page.value = val
+  pageInfo.page = val
   initData()
 }
-
-const userDialogShow = ref(false)
 
 // 操作
 const handleView = (login: string) => {
