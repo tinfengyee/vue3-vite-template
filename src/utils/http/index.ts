@@ -10,7 +10,7 @@ import { ElMessage } from 'element-plus'
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_APP_HOST,
+  baseURL: import.meta.env.VITE_GLOB_API_URL,
   // 请求超时时间
   timeout: 10000,
   headers: {

@@ -1,12 +1,4 @@
-import type { RouteRecordRaw } from 'vue-router'
-
-export interface RouteMeta {
-  title: string
-  link?: string
-  icon?: string
-  hidden?: boolean
-  keepAlive?: boolean
-}
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 
 // @ts-ignore 或者使用 type xx = {} & RouteRecordRaw
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {

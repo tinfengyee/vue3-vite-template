@@ -1,7 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
-    "env.d.ts",
     "src/**/*",
     "src/**/*.vue",
     "types/**/*.d.ts"
@@ -21,6 +20,7 @@
       ]
     },
     "types": [
+      "vite-svg-loader",
       "element-plus/global"
     ]
   }

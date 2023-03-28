@@ -14,18 +14,21 @@ import svgLoader from 'vite-svg-loader'
 
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
-
-const ENV = process.env.NODE_ENV ?? 'development'
-const CONFIG = loadEnv(ENV, process.cwd())
+import { wrapperEnv } from './build'
 
 // https://vitejs.dev/config/
 // export default defineConfig()
 
-export default ({ command }: ConfigEnv): UserConfigExport => {
+export default ({ command, mode }: ConfigEnv): UserConfigExport => {
+  const root = process.cwd()
+  const env = loadEnv(mode, root)
+
+  const { VITE_PUBLIC_PATH, VITE_PORT } = wrapperEnv(env)
   return {
-    base: CONFIG.VITE_APP_BASE_URL,
+    base: VITE_PUBLIC_PATH,
     server: {
       cors: true,
+      port: VITE_PORT,
       proxy: {
         '^/api|management/.*': {
           target: 'http://localhost:8080',
