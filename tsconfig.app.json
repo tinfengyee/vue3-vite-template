@@ -1,6 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
+    "build/**/*.ts",
     "src/**/*",
     "src/**/*.vue",
     "types/**/*.d.ts"

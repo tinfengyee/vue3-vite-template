@@ -1,16 +1,14 @@
-import * as path from 'path'
-import type { Plugin, ResolvedConfig } from 'vite'
+// 开发环境完整引入element-plus
 
-export default function fullImportPlugin() {
-  let config: ResolvedConfig
+import type { Plugin } from 'vite'
+
+export function fullImportPlugin() {
   return <Plugin>{
-    name: 'fullImportElementPlus',
-    async configResolved(conf) {
-      config = conf
-    },
+    name: 'dev-auto-import-element-plus',
+    apply: 'serve',
     transform(code, id) {
-      // 判断当前处理的是否是 _src/main.ts_
-      if (path.join(config.root, 'src/main.ts') === id) {
+      if (/src\/main.ts$/.test(id)) {
+        // console.log(code)
         const name = 'ElementPlus'
 
         // 引入 ElementPlus 和 样式
