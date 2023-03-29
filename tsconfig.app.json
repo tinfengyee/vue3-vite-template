@@ -11,6 +11,7 @@
   ],
   "compilerOptions": {
     "composite": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

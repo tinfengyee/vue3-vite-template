@@ -100,6 +100,14 @@ const add: Array<AppRouteRecordRaw> = [
         meta: {
           title: 'Health'
         }
+      },
+      {
+        path: '/admin/swagger',
+        name: 'Swagger',
+        component: () => import('@/views/admin/swagger/index.vue'),
+        meta: {
+          title: 'Swagger'
+        }
       }
     ]
   },

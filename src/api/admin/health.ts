@@ -1,4 +1,4 @@
-import { http } from '@/utils/http'
+import http from '@/utils/http'
 import type { HealthComps } from './model/healthModel'
 
 enum Api {
@@ -6,5 +6,5 @@ enum Api {
 }
 
 export const featchHealth = () => {
-  return http.request<HealthComps>('get', Api.Health)
+  return http.get<HealthComps>(Api.Health)
 }

@@ -1,4 +1,4 @@
-import { http } from '@/utils/http'
+import http from '@/utils/http'
 type TestRes = {
   code: number
   data: {
@@ -11,7 +11,9 @@ type TestReq = {
 }
 
 export const getDemo = (query: string, data: TestReq) => {
-  return http.request<TestRes>('get', '/get', {
+  return http.request<any, TestRes>({
+    method: 'get',
+    url: '/get',
     params: {
       id: query
     },

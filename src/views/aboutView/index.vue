@@ -1,14 +1,6 @@
 <template>
-  <div class="hello" style="background-color: #fff">
-    <div>姓名：{{ person.name }}</div>
-    <div>年龄：{{ person.age }}</div>
-    <div>朋友：{{ person.friend.name }}-{{ person.friend.age }}</div>
-    <div v-for="(item, index) in person.hobbies" :key="index">
-      爱好列表
-      <div>{{ item }}</div>
-    </div>
-    {{ reactivePerson.friend.name }}
-    <button @click="updateInfo">修改信息</button>
+  <div>
+    <iframe :src="'https://tailwindcss.com/docs/installation'" class="frame-iframe" ref="frameRef" />
   </div>
 </template>
 

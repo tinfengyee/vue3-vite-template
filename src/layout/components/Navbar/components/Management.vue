@@ -7,8 +7,9 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="UserManagement">用户管理</el-dropdown-item>
-        <el-dropdown-item command="Metrics">资源监控</el-dropdown-item>
-        <el-dropdown-item command="Health">服务状态</el-dropdown-item>
+        <!-- <el-dropdown-item command="Metrics">资源监控</el-dropdown-item>
+        <el-dropdown-item command="Health">服务状态</el-dropdown-item> -->
+        <el-dropdown-item command="Swagger">Swagger API</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
