@@ -22,9 +22,6 @@ dependencies:
   nprogress:
     specifier: ^0.2.0
     version: 0.2.0
-  numeral:
-    specifier: ^2.0.6
-    version: 2.0.6
   pinia:
     specifier: ^2.0.32
     version: 2.0.32(typescript@4.9.5)(vue@3.2.47)
@@ -37,9 +34,6 @@ dependencies:
   vue-i18n:
     specifier: 9.3.0-beta.16
     version: 9.3.0-beta.16(vue@3.2.47)
-  vue-request:
-    specifier: 2.0.0-rc.4
-    version: 2.0.0-rc.4(vue@3.2.47)
   vue-router:
     specifier: ^4.1.6
     version: 4.1.6(vue@3.2.47)
@@ -3879,10 +3873,6 @@ packages:
       boolbase: 1.0.0
     dev: true
 
-  /numeral@2.0.6:
-    resolution: {integrity: sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==}
-    dev: false
-
   /nwsapi@2.2.2:
     resolution: {integrity: sha512-90yv+6538zuvUMnN+zCr8LuV6bPFdq50304114vJYJ8RDyK8D5O9Phpbd6SZWgI7PwzmmfN1upeOJlvybDSgCw==}
     dev: true
@@ -5365,19 +5355,6 @@ packages:
       '@intlify/vue-devtools': 9.3.0-beta.16
       '@vue/devtools-api': 6.5.0
       vue: 3.2.47
-    dev: false
-
-  /vue-request@2.0.0-rc.4(vue@3.2.47):
-    resolution: {integrity: sha512-Nv/CpfKlfwW9SVHakEukeSQpuqSwskeJsHK4gfw8KB8NZogWfR8+EU+XupLe+Dapnm+RAP+wZYzhw89v3Zyx2g==}
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^2.0.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      vue: 3.2.47
-      vue-demi: 0.13.11(vue@3.2.47)
     dev: false
 
   /vue-router@4.1.6(vue@3.2.47):

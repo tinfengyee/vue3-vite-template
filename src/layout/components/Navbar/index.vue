@@ -3,7 +3,6 @@
     <div class="navbar-left">
       <Hamburger />
       <RouterLink to="/" class="logo">
-        <SvgIcon icon="logo-jhipster" :size="50" color="red" />
         <span>LOGO</span>
       </RouterLink>
       <RouterLink to="/about" class="right-menu-item">
@@ -33,7 +32,6 @@ import Management from './components/Management.vue'
   display: flex;
   align-items: center;
   .logo {
-    // padding: 10px;
     height: var(--header-height);
     display: flex;
     align-items: center;

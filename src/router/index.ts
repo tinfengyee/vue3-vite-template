@@ -86,49 +86,11 @@ const add: Array<AppRouteRecordRaw> = [
         }
       },
       {
-        path: '/admin/metrics',
-        name: 'Metrics',
-        component: () => import('@/views/admin/metrics/index.vue'),
-        meta: {
-          title: 'Metrics'
-        }
-      },
-      {
-        path: '/admin/health',
-        name: 'Health',
-        component: () => import('@/views/admin/health/index.vue'),
-        meta: {
-          title: 'Health'
-        }
-      },
-      {
         path: '/admin/swagger',
         name: 'Swagger',
         component: () => import('@/views/admin/swagger/index.vue'),
         meta: {
           title: 'Swagger'
-        }
-      }
-    ]
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: Layout,
-    redirect: '/about/index',
-    meta: {
-      title: $t('routes.about.about')
-    },
-    children: [
-      {
-        path: '/about/index',
-        name: 'AboutChildren',
-        component: () => import('@/views/aboutView/index.vue'),
-        meta: {
-          title: $t('routes.about.about')
         }
       }
     ]

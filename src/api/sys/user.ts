@@ -9,7 +9,7 @@ enum Api {
 }
 
 export const loginApi = (data: LoginParams) => {
-  return http.request<LoginResultModel, LoginParams>({
+  return http.request<LoginParams, LoginResultModel>({
     method: 'post',
     url: Api.Login,
     data
@@ -17,17 +17,17 @@ export const loginApi = (data: LoginParams) => {
 }
 
 export const accountApi = () => {
-  return http.request<AccountResultModel>({
+  return http.request<any, AccountResultModel>({
     method: 'get',
     url: Api.Account
   })
 }
 
 export const updateAccount = (data: UserInfo) => {
-  return http.request<any>({ method: 'post', url: Api.Account, data })
+  return http.request({ method: 'post', url: Api.Account, data })
 }
 export const changePassword = (data: passwordParams) => {
-  return http.request<any, passwordParams>({
+  return http.request({
     method: 'post',
     url: Api.Password,
     data

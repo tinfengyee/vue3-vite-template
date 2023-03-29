@@ -1,5 +1,5 @@
 <template>
-  <base-dialog v-model="value" :title="t('components.login.title')">
+  <base-dialog v-model="value" :title="t('components.login.title')" width="40%">
     <el-form :model="form" label-position="top">
       <el-form-item :label="t('components.login.username')">
         <el-input v-model="form.username" autocomplete="off" />
@@ -16,9 +16,7 @@
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="emit('update:modelValue', false)">{{
-          t('common.cancelText')
-        }}</el-button>
+        <el-button @click="emit('update:modelValue', false)">{{ t('common.cancelText') }}</el-button>
         <el-button type="primary" @click="doLogin"> {{ t('components.login.okText') }} </el-button>
       </span>
     </template>

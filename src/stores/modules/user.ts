@@ -56,11 +56,6 @@ export const useUserStore = defineStore({
       this.setToken('')
       this.setUserInfo(null)
       router.replace('/')
-    },
-    // magic
-    logoutTest() {
-      console.log('logoutTest')
-      router.replace('/')
     }
   }
 })
