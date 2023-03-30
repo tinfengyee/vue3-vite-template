@@ -8,6 +8,6 @@ export function configMockPlugin(isBuild: boolean) {
   return viteMockServe({
     // default
     mockPath: 'mock',
-    localEnabled: isBuild
+    localEnabled: !isBuild
   })
 }
