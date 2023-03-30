@@ -10,8 +10,8 @@
       </RouterLink>
     </div>
     <div class="navbar-right">
-      <LocalPicker class="right-menu-item locale-picker" />
       <Management class="right-menu-item management" />
+      <LocalPicker class="right-menu-item locale-picker" />
       <User />
     </div>
   </div>

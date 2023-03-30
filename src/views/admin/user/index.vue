@@ -3,44 +3,52 @@
     <div class="c-btn-list">
       <el-button type="primary" @click="refresh">
         <el-icon class="el-icon--right"><i-ep-refresh /></el-icon>
-        <span class="mgr_10">刷新</span>
+        <span class="mgr_10">{{ t('common.refresh') }}</span>
       </el-button>
       <el-button type="primary" @click="handleAdd">
         <el-icon class="el-icon--right"><i-ep-plus /></el-icon>
-        <span class="mgr_10">新增用户 </span>
+        <span class="mgr_10">{{ t('views.UserManagement.addBtn') }}</span>
       </el-button>
     </div>
     <el-table :data="tableData" row-key="ID" size="default" v-loading="loading">
       <el-table-column label="ID" min-width="50" prop="id" />
-      <el-table-column label="登录" min-width="100" prop="login" />
-      <el-table-column label="邮箱" min-width="150" prop="email" />
-      <el-table-column label="语言" min-width="80" prop="langKey" />
-      <el-table-column label="角色" min-width="160" prop="authorities">
+      <el-table-column :label="t('views.UserManagement.login')" min-width="100" prop="login" />
+      <el-table-column :label="t('views.UserManagement.email')" min-width="150" prop="email" />
+      <el-table-column :label="t('views.UserManagement.langKey')" min-width="100" prop="langKey" />
+      <el-table-column :label="t('views.UserManagement.authorities')" min-width="160" prop="authorities">
         <template #default="{ row }">
           <el-tag v-for="auth in row.authorities" :key="auth" type="info" style="margin-top: 2px">
             {{ auth }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="创建时间" min-width="180" prop="createdDate" />
-      <el-table-column label="最近修改人" min-width="100" prop="lastModifiedBy" />
-      <el-table-column label="最近修改时间" min-width="180" prop="lastModifiedDate" />
-      <el-table-column label="操作" min-width="220" fixed="right">
+      <el-table-column :label="t('views.UserManagement.createdDate')" min-width="180" prop="createdDate">
+        <template #default="{ row }">
+          {{ dayjs(row.createdDate).format('YYYY-MM-DD HH:mm:ss') }}
+        </template>
+      </el-table-column>
+      <el-table-column :label="t('views.UserManagement.lastModifiedBy')" min-width="120" prop="lastModifiedBy" />
+      <el-table-column :label="t('views.UserManagement.lastModifiedDate')" min-width="180" prop="lastModifiedDate">
+        <template #default="{ row }">
+          {{ dayjs(row.lastModifiedDate).format('YYYY-MM-DD HH:mm:ss') }}
+        </template>
+      </el-table-column>
+      <el-table-column :label="t('views.UserManagement.action')" min-width="220" fixed="right">
         <template #default="scope">
           <el-button type="primary" link @click="handleView(scope.row.login)">
             <i-ep-view />
-            <span>查看</span>
+            <span>{{ t('common.viewText') }}</span>
           </el-button>
           <el-button type="primary" link @click="handleEdit(scope.row.login)">
             <i-ep-edit-pen />
-            <span>编辑</span>
+            <span>{{ t('common.editText') }}</span>
           </el-button>
 
-          <el-popconfirm title="Are you sure to delete this?" @confirm="handleDelete(scope.row.login)">
+          <el-popconfirm :title="t('views.UserManagement.delBtn.question')" @confirm="handleDelete(scope.row.login)">
             <template #reference>
               <el-button type="primary" link>
                 <i-ep-close />
-                <span>删除</span>
+                <span>{{ t('common.delText') }}</span>
               </el-button>
             </template>
           </el-popconfirm>
@@ -63,49 +71,68 @@
     v-model="userDialogShow"
     class="user-dialog"
     style="width: 38%"
-    title="用户"
+    :title="t('views.UserManagement.dialog.title')"
     :show-close="true"
     :close-on-press-escape="false"
     :close-on-click-modal="true"
   >
     <div style="overflow: auto">
-      <el-form ref="userForm" :model="userInfo" label-width="70px" v-loading="dialogLoading">
-        <el-form-item label="ID" prop="id" v-show="dialogType === 'view'">
+      <el-form ref="userForm" :model="userInfo" label-width="100px" v-loading="dialogLoading">
+        <el-form-item label="ID" prop="id" v-show="dialogType !== 'add'">
           <span>{{ userInfo.id }}</span>
         </el-form-item>
-        <el-form-item label="登录" prop="login">
+        <el-form-item :label="t('views.UserManagement.login')" prop="login">
           <el-input v-model="userInfo.login" v-if="dialogType !== 'view'" />
           <span v-else
             >{{ userInfo.login }}
             <i
-              ><el-tag type="success" v-if="userInfo.activated">已激活</el-tag>
-              <el-tag type="danger" v-else>已失效</el-tag>
+              ><el-tag type="success" v-if="userInfo.activated">{{ t('views.UserManagement.activated') }}</el-tag>
+              <el-tag type="danger" v-else>{{ t('views.UserManagement.deactivated') }}</el-tag>
             </i>
           </span>
         </el-form-item>
-        <el-form-item label="名字" prop="firstName">
+        <el-form-item :label="t('views.UserManagement.firstName')" prop="firstName">
           <el-input v-model="userInfo.firstName" v-if="dialogType !== 'view'" />
           <span v-else>{{ userInfo.firstName }}</span>
         </el-form-item>
-        <el-form-item label="姓氏" prop="lastName">
+        <el-form-item :label="t('views.UserManagement.lastName')" prop="lastName">
           <el-input v-model="userInfo.lastName" v-if="dialogType !== 'view'" />
           <span v-else>{{ userInfo.lastName }}</span>
         </el-form-item>
-        <el-form-item label="邮箱" prop="email">
+        <el-form-item :label="t('views.UserManagement.email')" prop="email">
           <el-input v-model="userInfo.email" v-if="dialogType !== 'view'" />
           <span v-else>{{ userInfo.email }}</span>
         </el-form-item>
-        <el-form-item label="已激活" prop="activated" v-show="dialogType !== 'view'">
+        <el-form-item :label="t('views.UserManagement.activated')" prop="activated" v-show="dialogType !== 'view'">
           <el-checkbox v-model="userInfo.activated" />
         </el-form-item>
-        <el-form-item label="语言" prop="langKey">
-          <el-select v-model="userInfo.langKey" placeholder="Select" v-if="dialogType !== 'view'">
+        <el-form-item :label="t('views.UserManagement.langKey')" prop="langKey">
+          <el-select v-model="userInfo.langKey" placeholder="language" v-if="dialogType !== 'view'">
             <el-option v-for="item in langKeyOptions" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
           <span v-else>{{ userInfo.langKey }}</span>
         </el-form-item>
-        <el-form-item label="角色" prop="authorities">
-          <el-select v-model="userInfo.authorities" placeholder="Select" multiple v-if="dialogType !== 'view'">
+        <template v-if="dialogType === 'view'">
+          <el-form-item :label="t('views.UserManagement.createdBy')" prop="createdBy">
+            <span>{{ userInfo.createdBy }} </span>
+          </el-form-item>
+          <el-form-item :label="t('views.UserManagement.createdDate')" prop="createdDate">
+            <span>{{ dayjs(userInfo.createdDate).format('YYYY-MM-DD HH:mm:ss') }} </span>
+          </el-form-item>
+          <el-form-item :label="t('views.UserManagement.createdBy')" prop="createdBy">
+            <span>{{ userInfo.lastModifiedBy }} </span>
+          </el-form-item>
+          <el-form-item :label="t('views.UserManagement.lastModifiedDate')" prop="lastModifiedDate">
+            <span>{{ dayjs(userInfo.lastModifiedDate).format('YYYY-MM-DD HH:mm:ss') }} </span>
+          </el-form-item>
+        </template>
+        <el-form-item :label="t('views.UserManagement.authorities')" prop="authorities">
+          <el-select
+            v-model="userInfo.authorities"
+            :placeholder="t('views.UserManagement.authorities_placeholder')"
+            multiple
+            v-if="dialogType !== 'view'"
+          >
             <el-option v-for="item in authorityOptions" :key="item" :label="item" :value="item" />
           </el-select>
           <template v-else>
@@ -118,8 +145,8 @@
     </div>
     <template #footer>
       <div class="">
-        <el-button @click="userDialogShow = false">取 消</el-button>
-        <el-button type="primary" @click="handleComfirm">确 定</el-button>
+        <el-button @click="userDialogShow = false">{{ t('common.cancelText') }}</el-button>
+        <el-button type="primary" @click="handleComfirm">{{ t('common.okText') }}</el-button>
       </div>
     </template>
   </el-dialog>
@@ -129,8 +156,10 @@ import type { AccountResultModel } from '@/api/sys/model/userModel'
 import { fetchUserList, addUserApi, fetchAuthorities, fetchUserInfo, deleteUserApi, updateUserApi } from '@/api/admin/userManage'
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage, type FormInstance } from 'element-plus'
-// const tableData = ref<AccountResultModel[]>([])
-
+import dayjs from 'dayjs'
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
+//  dayjs(createTime).format("YYYY-MM-DD HH:mm:ss")
 // 分页
 const pageInfo = reactive({
   page: 1,
@@ -179,7 +208,7 @@ const authorityOptions = ref<string[]>([])
 
 const userForm = ref<FormInstance>()
 // Partial<AccountResultModel>
-const initalUser = () => ({
+const initalUser = (): AccountResultModel => ({
   id: null,
   activated: true,
   authorities: [],
@@ -191,7 +220,8 @@ const initalUser = () => ({
   lastModifiedBy: '',
   lastModifiedDate: null,
   lastName: '',
-  login: ''
+  login: '',
+  createdDate: ''
 })
 const userInfo = reactive(initalUser())
 
@@ -226,7 +256,7 @@ const handleComfirm = async () => {
     await updateUserApi(userInfo)
     initData()
   }
-  ElMessage.success('操作成功')
+  ElMessage.success(t('common.success'))
   userDialogShow.value = false
 }
 
@@ -252,7 +282,8 @@ const handleView = async (login: string) => {
 
 const handleDelete = async (login: string) => {
   await deleteUserApi(login)
-  ElMessage.success('操作成功')
+  ElMessage.success(t('common.success'))
+
   refresh()
 }
 

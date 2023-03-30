@@ -1,4 +1,54 @@
 export default {
+  common: {
+    success: '操作成功 !',
+    okText: '确认',
+    closeText: '关闭',
+    cancelText: '取消',
+    loadingText: '加载中...',
+    saveText: '保存',
+    delText: '删除',
+    viewText: '查看',
+    editText: '编辑',
+    resetText: '重置',
+    searchText: '搜索',
+    queryText: '查询',
+
+    inputText: '请输入',
+    chooseText: '请选择',
+
+    refresh: '刷新',
+    back: '返回',
+
+    light: '亮色主题',
+    dark: '黑暗主题'
+  },
+  global: {
+    user: {
+      // 可以根据需要把用户信息提取出来
+      login: '登录',
+      login_placeholder: '输入登录名',
+      firstName: '名字',
+      firstName_placeholder: '您的名字',
+      lastName: '姓氏',
+      lastName_placeholder: '您的姓氏',
+      email: '邮箱',
+      email_placeholder: '您的邮箱',
+      activated: '已激活',
+      authorities: '角色',
+      authorities_placeholder: '选择角色',
+      langKey: '语言',
+      createdBy: '创建人',
+      createdDate: '创建时间',
+      lastModifiedBy: '最近修改人',
+      lastModifiedDate: '最近修改时间',
+      password: '密码',
+      password_placeholder: '您的密码',
+      currentPassword: '当前密码',
+      newPassword: '新密码',
+      confirmPassword: '新密码确认',
+      confirmPassword_placeholder: '确认您的新密码'
+    }
+  },
   routes: {
     home: {
       welcome: '欢迎'
@@ -9,29 +59,14 @@ export default {
     account: {
       account: '账户',
       password: '密码',
-      settings: '设置'
+      settings: '设置',
+      register: '用户注册'
+    },
+    admin: {
+      admin: '管理',
+      user: '用户管理',
+      swagger: 'Swagger Api'
     }
-  },
-  common: {
-    success: '操作成功 !',
-    okText: '确认',
-    closeText: '关闭',
-    cancelText: '取消',
-    loadingText: '加载中...',
-    saveText: '保存',
-    delText: '删除',
-    resetText: '重置',
-    searchText: '搜索',
-    queryText: '查询',
-
-    inputText: '请输入',
-    chooseText: '请选择',
-
-    redo: '刷新',
-    back: '返回',
-
-    light: '亮色主题',
-    dark: '黑暗主题'
   },
   components: {
     login: {
@@ -50,7 +85,7 @@ export default {
     }
   },
   views: {
-    password: {
+    Password: {
       title: '修改密码',
       currentPassword: '当前密码',
       newPassword: '新密码',
@@ -62,12 +97,39 @@ export default {
         confirmPassword: '请再次输入密码'
       }
     },
-    settings: {
+    Settings: {
       title: '用户设置',
+      confirmBtn: '保存'
+    },
+    Register: {
+      title: '用户注册',
+      confirmBtn: '注册',
+      message: {
+        success: '注册成功'
+      }
+    },
+    UserManagement: {
+      addBtn: '新增用户',
+      delBtn: {
+        question: '你确定要删除用户?'
+      },
+      action: '操作',
+      login: '登录',
       firstName: '名字',
       lastName: '姓氏',
       email: '电子邮件',
-      confirmBtn: '保存'
+      activated: '已激活',
+      deactivated: '失效',
+      authorities: '角色',
+      authorities_placeholder: '选择角色',
+      langKey: '语言',
+      createdBy: '创建人',
+      createdDate: '创建时间',
+      lastModifiedBy: '最近修改人',
+      lastModifiedDate: '最近修改时间',
+      dialog: {
+        title: '用户'
+      }
     }
   }
 }

@@ -38,7 +38,6 @@ http.interceptors.request.use(
 /** 响应拦截 */
 http.interceptors.response.use(
   (response) => {
-    console.log(response)
     if (response.headers['x-total-count']) {
       // 这个 headers 是列表返回的总数，所以这样特殊处理
       return response
@@ -48,10 +47,11 @@ http.interceptors.response.use(
   (error) => {
     const status = error.status || error.response!.status
     const url = error.response?.config.url
-    ElMessage.error(error)
+    const message = error.response?.data?.message || error.message
+
+    ElMessage.error(message)
     if (status === 401 || status === 403) {
       if (!url?.endsWith('api/account') && !url?.endsWith('api/authenticate')) {
-        // ElMessage.error('登录过期')
         useUserStoreHook().logout()
       }
     }

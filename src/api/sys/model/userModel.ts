@@ -11,15 +11,15 @@ export interface LoginResultModel {
 export interface AccountResultModel {
   activated: boolean
   authorities: string[]
-  createdBy: string
-  createdDate: null
+  createdBy: string | null
+  createdDate: string | null
   email: string
   firstName: string
-  id: number
+  id: number | null
   imageUrl: string
   langKey: string
-  lastModifiedBy: string
-  lastModifiedDate: null
+  lastModifiedBy: string | null
+  lastModifiedDate: string | null
   lastName: string
   login: string
 }

@@ -5,7 +5,8 @@ import type { LoginParams, LoginResultModel, AccountResultModel, passwordParams 
 enum Api {
   Login = '/api/authenticate',
   Account = '/api/account',
-  Password = '/api/account/change-password'
+  Password = '/api/account/change-password',
+  Register = '/api/register'
 }
 
 export const loginApi = (data: LoginParams) => {
@@ -26,10 +27,15 @@ export const accountApi = () => {
 export const updateAccount = (data: UserInfo) => {
   return http.request({ method: 'post', url: Api.Account, data })
 }
+
 export const changePassword = (data: passwordParams) => {
   return http.request({
     method: 'post',
     url: Api.Password,
     data
   })
+}
+
+export const registerAccount = (account: any) => {
+  return http.request({ method: 'post', url: Api.Register, data: account })
 }

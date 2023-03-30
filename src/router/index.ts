@@ -5,6 +5,7 @@ import type { App } from 'vue'
 import { $t } from '@/locales'
 import { useUserStoreHook } from '@/stores/modules/user'
 import NProgress from './progress'
+import { t } from '@/hooks/web/useI18n'
 
 const base: Array<AppRouteRecordRaw> = [
   {
@@ -63,6 +64,14 @@ const add: Array<AppRouteRecordRaw> = [
         meta: {
           title: $t('routes.account.password')
         }
+      },
+      {
+        path: '/account/register',
+        name: 'Register',
+        component: () => import('../views/account/register/index.vue'),
+        meta: {
+          title: $t('routes.account.password')
+        }
       }
     ]
   },
@@ -74,7 +83,7 @@ const add: Array<AppRouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: Layout,
     meta: {
-      title: 'admin'
+      title: t('routes.admin.admin')
     },
     children: [
       {
@@ -82,7 +91,7 @@ const add: Array<AppRouteRecordRaw> = [
         name: 'UserManagement',
         component: () => import('@/views/admin/user/index.vue'),
         meta: {
-          title: 'UserManagement'
+          title: t('routes.admin.user')
         }
       },
       {
@@ -90,7 +99,7 @@ const add: Array<AppRouteRecordRaw> = [
         name: 'Swagger',
         component: () => import('@/views/admin/swagger/index.vue'),
         meta: {
-          title: 'Swagger'
+          title: t('routes.admin.swagger')
         }
       }
     ]
@@ -108,7 +117,7 @@ export const router = createRouter({
 })
 
 // 必须加上 /welcome 不然无限循环
-const whiteList = ['/', '/welcome']
+const whiteList = ['/', '/welcome', '/account/register']
 
 router.beforeEach(async (to, from, next) => {
   // 开启进度条动画

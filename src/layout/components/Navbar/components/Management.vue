@@ -1,13 +1,13 @@
 <template>
   <el-dropdown trigger="click" @command="onDropChange">
     <div class="flex fvertical">
-      <span>管理</span>
+      <span>{{ t('routes.admin.admin') }}</span>
       <SvgIcon icon="down" class="manage-icon" />
     </div>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item command="UserManagement">用户管理</el-dropdown-item>
-        <el-dropdown-item command="Swagger">Swagger API</el-dropdown-item>
+        <el-dropdown-item command="UserManagement">{{ t('routes.admin.user') }}</el-dropdown-item>
+        <el-dropdown-item command="Swagger">{{ t('routes.admin.swagger') }}</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -15,6 +15,8 @@
 
 <script setup lang="ts">
 import { router } from '@/router'
+import { useI18n } from '@/hooks/web/useI18n'
+const { t } = useI18n()
 
 const onDropChange = function (command: string) {
   router.push({

@@ -14,7 +14,7 @@
       <el-dropdown-menu class="user-dropdown">
         <template v-if="!userinfo">
           <el-dropdown-item @click="showLoginForm = true">{{ t('components.user.login') }}</el-dropdown-item>
-          <el-dropdown-item divided> {{ t('components.user.register') }} </el-dropdown-item>
+          <el-dropdown-item divided @click="$router.push('/account/register')"> {{ t('components.user.register') }} </el-dropdown-item>
         </template>
         <template v-else>
           <el-dropdown-item @click="$router.push('/account/settings')">

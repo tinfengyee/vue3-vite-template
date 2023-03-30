@@ -1,21 +1,19 @@
 <template>
   <el-row justify="center" class="card">
     <el-col :span="16">
-      <h2 class="mgb_20">{{ t('views.settings.title') }}</h2>
+      <h2 class="mgb_20">{{ t('views.Settings.title') }}</h2>
       <el-form label-position="top" label-width="120px" :model="userinfo">
-        <el-form-item :label="t('views.settings.firstName')">
+        <el-form-item :label="t('global.user.firstName')">
           <el-input v-model="userinfo.firstName" />
         </el-form-item>
-        <el-form-item :label="t('views.settings.lastName')">
+        <el-form-item :label="t('global.user.lastName')">
           <el-input v-model="userinfo.lastName" />
         </el-form-item>
-        <el-form-item :label="t('views.settings.email')">
+        <el-form-item :label="t('global.user.email')">
           <el-input v-model="userinfo.email" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handleConfirm">{{
-            t('views.settings.confirmBtn')
-          }}</el-button>
+          <el-button type="primary" @click="handleConfirm">{{ t('views.Settings.confirmBtn') }}</el-button>
         </el-form-item>
       </el-form>
     </el-col>
