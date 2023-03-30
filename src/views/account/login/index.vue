@@ -1,10 +1,10 @@
 <template>
-  <base-dialog v-model="value" :title="t('components.login.title')" width="40%">
-    <el-form :model="form" label-position="top">
-      <el-form-item :label="t('components.login.username')">
+  <base-dialog v-model="value" :closeByMask="false" :title="t('components.login.title')" width="40%">
+    <el-form ref="formEl" :rules="rules" :model="form" label-position="top">
+      <el-form-item :label="t('components.login.username')" prop="username">
         <el-input v-model="form.username" autocomplete="off" />
       </el-form-item>
-      <el-form-item :label="t('components.login.password')">
+      <el-form-item :label="t('components.login.password')" prop="password">
         <el-input v-model="form.password" autocomplete="off" show-password @keyup.enter="doLogin" />
       </el-form-item>
       <el-form-item>
@@ -24,13 +24,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import type { LoginParams } from '@/api/sys/model/userModel'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/web/useI18n'
-import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
+const router = useRouter()
 const userStore = useUserStore()
 
 const props = defineProps({
@@ -57,18 +59,43 @@ const form = reactive<LoginParams>({
   password: 'admin',
   rememberMe: true
 })
+const formEl = ref<FormInstance>()
 
-const doLogin = async () => {
-  try {
-    const userInfo = await userStore.login(form)
-    if (userInfo) {
-      emit('update:modelValue', false)
+// 校验
+const rules = reactive<FormRules>({
+  username: [
+    {
+      required: true,
+      message: 'Please Input username'
     }
-  } catch (error: any) {
-    ElMessage({
-      type: 'warning',
-      message: error.response.data.detail
-    })
-  }
+  ],
+  password: [
+    {
+      required: true,
+      message: 'Please Input password'
+    }
+  ]
+})
+
+// 操作
+const doLogin = async () => {
+  formEl.value?.validate(async (valid) => {
+    try {
+      if (valid) {
+        const userInfo = await userStore.login(form)
+        if (userInfo) {
+          emit('update:modelValue', false)
+          router.replace('/')
+        }
+      } else {
+        return false
+      }
+    } catch (error: any) {
+      // ElMessage({
+      //   type: 'warning',
+      //   message: error.response.data.detail
+      // })
+    }
+  })
 }
 </script>

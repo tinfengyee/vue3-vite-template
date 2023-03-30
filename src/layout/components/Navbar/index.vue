@@ -5,9 +5,6 @@
       <RouterLink to="/" class="logo">
         <span>LOGO</span>
       </RouterLink>
-      <RouterLink to="/about" class="right-menu-item">
-        <SvgIcon icon="icon-logo-google" />
-      </RouterLink>
     </div>
     <div class="navbar-right">
       <Management class="right-menu-item management" />

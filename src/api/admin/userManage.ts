@@ -6,11 +6,7 @@ enum Api {
   User = '/api/admin/users',
   Authorities = '/api/authorities'
 }
-// interface UserListParam {
-//   sort: string
-//   page: string | number
-//   size: string | number
-// }
+
 export const fetchUserList = (req?: { page: number; size: number }) => {
   return http.request<any, AxiosResponse<AccountResultModel[]>>({
     method: 'get',
@@ -48,6 +44,7 @@ export const fetchUserInfo = (login: string) => {
     url: `${Api.User}/${login}`
   })
 }
+
 export const deleteUserApi = (login: string) => {
   return http.request({
     method: 'delete',

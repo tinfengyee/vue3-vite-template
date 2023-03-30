@@ -47,14 +47,16 @@ http.interceptors.response.use(
   (error) => {
     const status = error.status || error.response!.status
     const url = error.response?.config.url
-    const message = error.response?.data?.message || error.message
-
-    ElMessage.error(message)
+    const message = error.response.data.detail || error.response?.data?.message || error.message
+    if (status === 400) {
+      // fieldErrors
+    }
     if (status === 401 || status === 403) {
       if (!url?.endsWith('api/account') && !url?.endsWith('api/authenticate')) {
         useUserStoreHook().logout()
       }
     }
+    ElMessage.error(message)
     return Promise.reject(error)
   }
 )

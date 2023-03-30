@@ -77,7 +77,7 @@
     :close-on-click-modal="true"
   >
     <div style="overflow: auto">
-      <el-form ref="userForm" :model="userInfo" label-width="100px" v-loading="dialogLoading">
+      <el-form ref="formEl" :model="userInfo" :rules="rules" label-width="100px" v-loading="dialogLoading">
         <el-form-item label="ID" prop="id" v-show="dialogType !== 'add'">
           <span>{{ userInfo.id }}</span>
         </el-form-item>
@@ -155,7 +155,7 @@
 import type { AccountResultModel } from '@/api/sys/model/userModel'
 import { fetchUserList, addUserApi, fetchAuthorities, fetchUserInfo, deleteUserApi, updateUserApi } from '@/api/admin/userManage'
 import { onMounted, reactive, ref } from 'vue'
-import { ElMessage, type FormInstance } from 'element-plus'
+import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import dayjs from 'dayjs'
 import { useI18n } from '@/hooks/web/useI18n'
 const { t } = useI18n()
@@ -206,8 +206,8 @@ type dialogOpenType = 'add' | 'view' | 'edit'
 const dialogType = ref<dialogOpenType>()
 const authorityOptions = ref<string[]>([])
 
-const userForm = ref<FormInstance>()
-// Partial<AccountResultModel>
+const formEl = ref<FormInstance>()
+
 const initalUser = (): AccountResultModel => ({
   id: null,
   activated: true,
@@ -232,8 +232,29 @@ const langKeyOptions = [
   }
 ]
 
+// 校验
+const rules = reactive<FormRules>({
+  login: [
+    {
+      required: true,
+      message: 'Please Input login'
+    }
+  ],
+  email: [
+    {
+      required: true,
+      message: 'Please Input Email'
+    },
+    {
+      min: 5,
+      message: 'Please Input email format',
+      pattern: /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    }
+  ]
+})
+
 const resetForm = () => {
-  userForm.value?.resetFields()
+  formEl.value?.resetFields()
   Object.assign(userInfo, initalUser())
 }
 
@@ -245,19 +266,21 @@ const openDialog = (type: dialogOpenType) => {
   userDialogShow.value = true
 }
 
-const handleComfirm = async () => {
-  console.log(userInfo)
-
-  if (dialogType.value === 'add') {
-    await addUserApi(userInfo)
-    initData()
-  }
-  if (dialogType.value === 'edit') {
-    await updateUserApi(userInfo)
-    initData()
-  }
-  ElMessage.success(t('common.success'))
-  userDialogShow.value = false
+const handleComfirm = () => {
+  formEl.value?.validate(async (valid) => {
+    if (valid) {
+      if (dialogType.value === 'add') {
+        await addUserApi(userInfo)
+        initData()
+      }
+      if (dialogType.value === 'edit') {
+        await updateUserApi(userInfo)
+        initData()
+      }
+      ElMessage.success(t('common.success'))
+      userDialogShow.value = false
+    }
+  })
 }
 
 const handleAdd = () => {
@@ -286,12 +309,4 @@ const handleDelete = async (login: string) => {
 
   refresh()
 }
-
-// const p = () => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(1)
-//     }, 2000)
-//   })
-// }
 </script>
