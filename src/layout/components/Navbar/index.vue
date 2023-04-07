@@ -1,7 +1,7 @@
 <template>
   <div class="app-navbar">
     <div class="navbar-left">
-      <Hamburger />
+      <!-- <Hamburger /> -->
       <RouterLink to="/" class="logo">
         <span>LOGO</span>
       </RouterLink>
@@ -14,7 +14,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import Hamburger from './components/Hamburger.vue'
+// import Hamburger from './components/Hamburger.vue'
 import LocalPicker from '@/components/Application/src/AppLocalePicker.vue'
 import User from './components/User.vue'
 import Management from './components/Management.vue'

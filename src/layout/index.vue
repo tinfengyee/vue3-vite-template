@@ -1,7 +1,7 @@
 <template>
   <div class="app-wrapper" :class="sidebarClass">
     <div class="app-mask" style="display: none"></div>
-    <Sidebar />
+    <!-- <Sidebar /> -->
     <div class="app-container">
       <div class="app-header">
         <Navbar />
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Sidebar from './components/Sidebar/index.vue'
+// import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
 import { useAppStore } from '@/stores/modules/app'
