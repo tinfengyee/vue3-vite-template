@@ -8,7 +8,7 @@
 import { localesConfigs } from '@/locales'
 import { useAppStore } from '@/stores/modules/app'
 import { computed } from 'vue'
-import { useTitle } from '@/hooks/web/useTitle'
+import { useTitle } from '@/hooks/useTitle'
 
 const appStore = useAppStore()
 const locale = computed(() => localesConfigs[appStore.getLocale].el)

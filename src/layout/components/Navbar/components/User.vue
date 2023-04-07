@@ -37,7 +37,7 @@
 import { computed, ref } from 'vue'
 import LoginForm from '@/views/account/login/index.vue'
 import { useUserStore } from '@/stores/modules/user'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 
 const { t } = useI18n()
 const userStore = useUserStore()

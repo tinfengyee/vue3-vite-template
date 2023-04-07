@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { registerAccount } from '@/api/sys/user'
 import { useRouter } from 'vue-router'

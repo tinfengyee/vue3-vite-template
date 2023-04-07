@@ -26,7 +26,7 @@
   </section>
 </template>
 <script lang="ts">
-import { usezIndex } from '@/hooks/web/useUtils'
+import { usezIndex } from '@/hooks/useUtils'
 import { defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 export default defineComponent({

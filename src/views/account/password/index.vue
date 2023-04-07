@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 // import { useUserStore } from '@/stores/modules/user'
 import type { passwordParams } from '@/api/sys/model/userModel'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'

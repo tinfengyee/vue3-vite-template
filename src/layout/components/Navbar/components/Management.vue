@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { router } from '@/router'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 const { t } = useI18n()
 
 const onDropChange = function (command: string) {

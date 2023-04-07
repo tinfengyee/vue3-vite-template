@@ -2,7 +2,7 @@ import { useAppStore } from '@/stores/modules/app'
 import { useTitle as usePageTitle } from '@vueuse/core'
 import { unref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 export function useTitle() {
   const pageTitle = usePageTitle()
   const { currentRoute } = useRouter()

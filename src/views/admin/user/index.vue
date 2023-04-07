@@ -157,7 +157,7 @@ import { fetchUserList, addUserApi, fetchAuthorities, fetchUserInfo, deleteUserA
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import dayjs from 'dayjs'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 const { t } = useI18n()
 //  dayjs(createTime).format("YYYY-MM-DD HH:mm:ss")
 // 分页

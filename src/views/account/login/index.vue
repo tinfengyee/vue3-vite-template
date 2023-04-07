@@ -27,7 +27,7 @@
 import { computed, reactive, ref } from 'vue'
 import type { LoginParams } from '@/api/sys/model/userModel'
 import { useUserStore } from '@/stores/modules/user'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 import type { FormInstance, FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 

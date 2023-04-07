@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { reactive, toRaw } from 'vue'
-import { useI18n } from '@/hooks/web/useI18n'
+import { useI18n } from '@/hooks/useI18n'
 import { useUserStore } from '@/stores/modules/user'
 import { updateAccount } from '@/api/sys/user'
 import { ElMessage } from 'element-plus'

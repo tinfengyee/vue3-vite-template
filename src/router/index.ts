@@ -5,7 +5,7 @@ import type { App } from 'vue'
 import { $t } from '@/locales'
 import { useUserStoreHook } from '@/stores/modules/user'
 import NProgress from './progress'
-import { t } from '@/hooks/web/useI18n'
+import { t } from '@/hooks/useI18n'
 
 const base: Array<AppRouteRecordRaw> = [
   {
