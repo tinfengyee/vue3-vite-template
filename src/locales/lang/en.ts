@@ -63,8 +63,7 @@ export default {
     },
     admin: {
       admin: 'Admin',
-      user: 'UserManagement',
-      swagger: 'Swagger Api'
+      user: 'UserManagement'
     }
   },
   components: {

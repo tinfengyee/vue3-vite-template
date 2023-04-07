@@ -64,8 +64,7 @@ export default {
     },
     admin: {
       admin: '管理',
-      user: '用户管理',
-      swagger: 'Swagger Api'
+      user: '用户管理'
     }
   },
   components: {

@@ -93,14 +93,6 @@ const add: Array<AppRouteRecordRaw> = [
         meta: {
           title: t('routes.admin.user')
         }
-      },
-      {
-        path: '/admin/swagger',
-        name: 'Swagger',
-        component: () => import('@/views/admin/swagger/index.vue'),
-        meta: {
-          title: t('routes.admin.swagger')
-        }
       }
     ]
   }

@@ -7,7 +7,6 @@
     <template #dropdown>
       <el-dropdown-menu>
         <el-dropdown-item command="UserManagement">{{ t('routes.admin.user') }}</el-dropdown-item>
-        <el-dropdown-item command="Swagger">{{ t('routes.admin.swagger') }}</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
