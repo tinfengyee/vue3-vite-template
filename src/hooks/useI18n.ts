@@ -52,5 +52,5 @@ export const useI18n = (
 }
 
 // 为什么要编写此函数？
-// 主要用于配合vscode i18nn ally插件。此功能仅用于路由和菜单
+// 主要用于配合vscode i18nn ally插件代码提示（只起提示起作用）。此功能仅用于路由和菜单
 export const t = (key: string) => key

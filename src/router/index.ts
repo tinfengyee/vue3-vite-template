@@ -2,7 +2,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import Layout from '../layout/index.vue'
 import type { AppRouteRecordRaw } from '@/router/types'
 import type { App } from 'vue'
-import { $t } from '@/locales'
 import { useUserStoreHook } from '@/stores/modules/user'
 import NProgress from './progress'
 import { t } from '@/hooks/useI18n'
@@ -14,7 +13,7 @@ const base: Array<AppRouteRecordRaw> = [
     component: Layout,
     redirect: '/welcome',
     meta: {
-      title: $t('routes.home.welcome')
+      title: t('routes.home.welcome')
     },
     children: [
       {
@@ -22,7 +21,7 @@ const base: Array<AppRouteRecordRaw> = [
         name: 'Welcome',
         component: () => import('@/views/welcome/index.vue'),
         meta: {
-          title: $t('routes.home.welcome')
+          title: t('routes.home.welcome')
         }
       }
     ]
@@ -46,7 +45,7 @@ const add: Array<AppRouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: Layout,
     meta: {
-      title: $t('routes.account.account')
+      title: t('routes.account.account')
     },
     children: [
       {
@@ -54,7 +53,7 @@ const add: Array<AppRouteRecordRaw> = [
         name: 'Settings',
         component: () => import('../views/account/settings/index.vue'),
         meta: {
-          title: $t('routes.account.settings')
+          title: t('routes.account.settings')
         }
       },
       {
@@ -62,7 +61,7 @@ const add: Array<AppRouteRecordRaw> = [
         name: 'Password',
         component: () => import('../views/account/password/index.vue'),
         meta: {
-          title: $t('routes.account.password')
+          title: t('routes.account.password')
         }
       },
       {
@@ -70,7 +69,7 @@ const add: Array<AppRouteRecordRaw> = [
         name: 'Register',
         component: () => import('../views/account/register/index.vue'),
         meta: {
-          title: $t('routes.account.password')
+          title: t('routes.account.password')
         }
       }
     ]
