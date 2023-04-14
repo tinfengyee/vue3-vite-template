@@ -21,8 +21,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       port: VITE_PORT,
       proxy: {
         '^/api|management/.*': {
-          target: 'http://localhost:8080',
-          changeOrigin: true
+          target: 'http://localhost:8080'
+          // changeOrigin: true
           // secure: false
           // rewrite: (path) => path.replace(/^\/api/, '')
         }
