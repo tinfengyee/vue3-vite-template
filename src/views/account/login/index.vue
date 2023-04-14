@@ -28,7 +28,7 @@ import { computed, reactive, ref } from 'vue'
 import type { LoginParams } from '@/api/sys/model/userModel'
 import { useUserStore } from '@/stores/modules/user'
 import { useI18n } from '@/hooks/useI18n'
-import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
@@ -87,14 +87,12 @@ const doLogin = async () => {
           emit('update:modelValue', false)
           router.replace('/')
         }
-      } else {
-        return false
       }
     } catch (error: any) {
-      // ElMessage({
-      //   type: 'warning',
-      //   message: error.response.data.detail
-      // })
+      ElMessage({
+        type: 'warning',
+        message: error
+      })
     }
   })
 }

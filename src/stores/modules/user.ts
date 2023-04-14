@@ -6,6 +6,7 @@ import Cache from '@/utils/cache'
 import type { LoginParams } from '@/api/sys/model/userModel'
 import { accountApi, loginApi } from '@/api/sys/user'
 import { router } from '@/router'
+import { isEmpty } from '@/utils/is'
 
 interface UserState {
   userInfo: Nullable<UserInfo>
@@ -40,8 +41,11 @@ export const useUserStore = defineStore({
     async login(params: LoginParams) {
       try {
         const res = await loginApi(params)
-        this.setToken(res.id_token)
-        return this.getUserInfoAcion()
+        if (!isEmpty(res)) {
+          this.setToken(res.id_token)
+          return this.getUserInfoAcion()
+        }
+        return Promise.reject('请检查账户信息')
       } catch (error) {
         return Promise.reject(error)
       }

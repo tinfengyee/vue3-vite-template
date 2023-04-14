@@ -9,6 +9,7 @@
       </div>
       <el-scrollbar class="app-scrollbar">
         <AppMain />
+        <Footer />
       </el-scrollbar>
     </div>
   </div>
@@ -19,6 +20,7 @@ import { computed } from 'vue'
 // import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import Footer from './components/Footer/index.vue'
 import { useAppStore } from '@/stores/modules/app'
 
 const appStore = useAppStore()
