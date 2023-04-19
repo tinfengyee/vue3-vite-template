@@ -39,7 +39,7 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     if (response.headers['x-total-count']) {
-      // 这个 headers 是列表返回的总数，所以这样特殊处理
+      // 这个 headers 是列表返回的总数，所以这样特殊处理,建议 total 放回 data 里面...
       return response
     }
     return response.data

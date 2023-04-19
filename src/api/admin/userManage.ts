@@ -1,5 +1,6 @@
 import http from '@/utils/http'
 import type { AxiosResponse } from 'axios'
+import type { IResponseType } from '../interface'
 import type { AccountResultModel } from '../sys/model/userModel'
 
 enum Api {
@@ -8,7 +9,7 @@ enum Api {
 }
 
 export const fetchUserList = (req?: { page: number; size: number }) => {
-  return http.request<any, AxiosResponse<AccountResultModel[]>>({
+  return http.request<any, AxiosResponse<IResponseType<AccountResultModel[]>>>({
     method: 'get',
     url: Api.User,
     params: req
@@ -32,7 +33,7 @@ export const updateUserApi = (req?: any) => {
 }
 
 export const fetchAuthorities = () => {
-  return http.request<any, string[]>({
+  return http.request<any, IResponseType<string[]>>({
     method: 'get',
     url: Api.Authorities
   })

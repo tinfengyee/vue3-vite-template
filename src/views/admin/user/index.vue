@@ -177,8 +177,8 @@ const initData = async () => {
     size: pageInfo.size
   })
   const authoritiesRes = await fetchAuthorities()
-  tableData.value = userListRes.data
-  authorityOptions.value = authoritiesRes
+  tableData.value = userListRes.data.data
+  authorityOptions.value = authoritiesRes.data
   pageInfo.total = Number(userListRes.headers['x-total-count'])
   loading.value = false
 }
@@ -291,7 +291,7 @@ const handleEdit = async (login: string) => {
   dialogLoading.value = true
   openDialog('edit')
   const res = await fetchUserInfo(login)
-  Object.assign(userInfo, res)
+  Object.assign(userInfo, res.data)
   dialogLoading.value = false
 }
 
@@ -299,7 +299,7 @@ const handleView = async (login: string) => {
   dialogLoading.value = true
   openDialog('view')
   const res = await fetchUserInfo(login)
-  Object.assign(userInfo, res)
+  Object.assign(userInfo, res.data)
   dialogLoading.value = false
 }
 

@@ -19,6 +19,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     server: {
       cors: true,
       port: VITE_PORT,
+      host: '0.0.0.0',
       proxy: {
         '^/api|management/.*': {
           target: 'http://localhost:8080'

@@ -1,5 +1,6 @@
 import type { UserInfo } from '#/store'
 import http from '@/utils/http'
+import type { IResponseType } from '../interface'
 import type { LoginParams, LoginResultModel, AccountResultModel, passwordParams } from './model/userModel'
 
 enum Api {
@@ -10,7 +11,7 @@ enum Api {
 }
 
 export const loginApi = (data: LoginParams) => {
-  return http.request<LoginParams, LoginResultModel>({
+  return http.request<LoginParams, IResponseType<LoginResultModel>>({
     method: 'post',
     url: Api.Login,
     data
@@ -18,7 +19,7 @@ export const loginApi = (data: LoginParams) => {
 }
 
 export const accountApi = () => {
-  return http.request<any, AccountResultModel>({
+  return http.request<any, IResponseType<AccountResultModel>>({
     method: 'get',
     url: Api.Account
   })

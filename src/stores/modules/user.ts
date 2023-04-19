@@ -42,7 +42,7 @@ export const useUserStore = defineStore({
       try {
         const res = await loginApi(params)
         if (!isEmpty(res)) {
-          this.setToken(res.id_token)
+          this.setToken(res.data.id_token)
           return this.getUserInfoAcion()
         }
         return Promise.reject('请检查账户信息')
@@ -52,7 +52,7 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAcion() {
       if (!this.token) return null
-      const account = (await accountApi()) as UserInfo
+      const account = (await accountApi()).data as UserInfo
       this.setUserInfo(account)
       return account
     },

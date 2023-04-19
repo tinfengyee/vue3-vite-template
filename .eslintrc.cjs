@@ -15,6 +15,7 @@ module.exports = defineConfig({
   parserOptions: {
     ecmaVersion: 'latest'
   },
+  ignorePatterns: ['src/assets/iconfont/iconfont.js'],
   rules: {
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-unused-vars': [
