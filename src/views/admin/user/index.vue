@@ -141,6 +141,9 @@
             </el-tag>
           </template>
         </el-form-item>
+        <el-form-item :label="t('views.UserManagement.defaultPwd')" prop="defaultPwd" v-if="dialogType === 'add'">
+          <span>123456</span>
+        </el-form-item>
       </el-form>
     </div>
     <template #footer>

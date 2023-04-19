@@ -72,7 +72,11 @@ export default {
       username: 'Username',
       password: 'Password',
       rememberme: 'RememberMe',
-      okText: 'Login'
+      okText: 'Login',
+      placeholder: {
+        username: 'Please input Username',
+        password: 'Please input Password'
+      }
     },
     user: {
       login: 'Login',
@@ -125,6 +129,7 @@ export default {
       createdDate: 'Created date',
       lastModifiedBy: 'Modified by',
       lastModifiedDate: 'Modified date',
+      defaultPwd: 'Default Pwd',
       dialog: {
         title: 'User'
       }

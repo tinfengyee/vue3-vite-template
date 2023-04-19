@@ -2,10 +2,16 @@
   <base-dialog v-model="value" :closeByMask="false" :title="t('components.login.title')" width="40%">
     <el-form ref="formEl" :rules="rules" :model="form" label-position="top">
       <el-form-item :label="t('components.login.username')" prop="username">
-        <el-input v-model="form.username" autocomplete="off" />
+        <el-input v-model="form.username" autocomplete="off" :placeholder="t('components.login.placeholder.username')" />
       </el-form-item>
       <el-form-item :label="t('components.login.password')" prop="password">
-        <el-input v-model="form.password" autocomplete="off" show-password @keyup.enter="doLogin" />
+        <el-input
+          v-model="form.password"
+          autocomplete="off"
+          show-password
+          @keyup.enter="doLogin"
+          :placeholder="t('components.login.placeholder.password')"
+        />
       </el-form-item>
       <el-form-item>
         <div>
@@ -55,8 +61,8 @@ const value = computed({
 })
 
 const form = reactive<LoginParams>({
-  username: 'admin',
-  password: 'admin',
+  username: '',
+  password: '',
   rememberMe: true
 })
 const formEl = ref<FormInstance>()

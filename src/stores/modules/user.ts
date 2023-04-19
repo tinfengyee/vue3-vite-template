@@ -41,7 +41,7 @@ export const useUserStore = defineStore({
     async login(params: LoginParams) {
       try {
         const res = await loginApi(params)
-        if (!isEmpty(res)) {
+        if (!isEmpty(res.data)) {
           this.setToken(res.data.id_token)
           return this.getUserInfoAcion()
         }

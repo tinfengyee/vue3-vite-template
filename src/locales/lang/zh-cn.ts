@@ -73,7 +73,11 @@ export default {
       username: '用户名',
       password: '密码',
       rememberme: '记住我',
-      okText: '登录'
+      okText: '登录',
+      placeholder: {
+        username: '请输入用户名',
+        password: '请输入密码'
+      }
     },
     user: {
       login: '登录',
@@ -126,6 +130,7 @@ export default {
       createdDate: '创建时间',
       lastModifiedBy: '最近修改人',
       lastModifiedDate: '最近修改时间',
+      defaultPwd: '默认密码',
       dialog: {
         title: '用户'
       }

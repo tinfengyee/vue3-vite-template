@@ -6,7 +6,7 @@
     </div>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item command="UserManagement">{{ t('routes.admin.user') }}</el-dropdown-item>
+        <el-dropdown-item command="UserManagement" v-if="isAdmin">{{ t('routes.admin.user') }}</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -15,6 +15,12 @@
 <script setup lang="ts">
 import { router } from '@/router'
 import { useI18n } from '@/hooks/useI18n'
+import { useUserStore } from '@/stores/modules/user'
+import { computed } from 'vue'
+const userStore = useUserStore()
+
+const isAdmin = computed(() => userStore?.userInfo?.authorities.includes('ROLE_ADMIN'))
+
 const { t } = useI18n()
 
 const onDropChange = function (command: string) {
