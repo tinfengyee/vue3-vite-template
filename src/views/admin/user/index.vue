@@ -119,9 +119,6 @@
           <el-form-item :label="t('views.UserManagement.createdDate')" prop="createdDate">
             <span>{{ dayjs(userInfo.createdDate).format('YYYY-MM-DD HH:mm:ss') }} </span>
           </el-form-item>
-          <el-form-item :label="t('views.UserManagement.createdBy')" prop="createdBy">
-            <span>{{ userInfo.lastModifiedBy }} </span>
-          </el-form-item>
           <el-form-item :label="t('views.UserManagement.lastModifiedDate')" prop="lastModifiedDate">
             <span>{{ dayjs(userInfo.lastModifiedDate).format('YYYY-MM-DD HH:mm:ss') }} </span>
           </el-form-item>
